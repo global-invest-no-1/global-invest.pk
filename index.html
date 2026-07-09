@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="7JSMj3OkYuq58YVdeR59OqxUc-0z4rsEgsZTIpwuPAQ" />
+    <title>Global invest Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0d47a1;
+            --secondary: #1565c0;
+            --accent: #2979ff;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --text: #1a237e;
+            --gray: #757575;
+            --success: #00c853;
+            --warning: #ffb300;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: #333; overflow-x: hidden; }
+        .hidden { display: none !important; }
+        
+        #app-layout { padding-bottom: 70px; }
+
+        header { background: var(--white); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .logo { font-size: 22px; font-weight: 800; color: var(--primary); letter-spacing: 1px; cursor: pointer; }
+
+        .auth-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; background: linear-gradient(135deg, var(--primary), var(--accent)); }
+        .auth-box { background: white; width: 100%; max-width: 400px; padding: 30px 20px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); text-align: center; }
+        .auth-box h2 { color: var(--primary); margin-bottom: 20px; font-weight: 800; }
+        .link-text { color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 15px; display: block; }
+
+        .dash-card { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; margin: 15px; padding: 25px; border-radius: 25px; box-shadow: 0 10px 20px rgba(13, 71, 161, 0.2); }
+        .dash-btns { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-action { flex: 1; padding: 12px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .btn-depo { background: var(--white); color: var(--primary); }
+        .btn-with { background: rgba(255,255,255,0.2); color: white; backdrop-filter: blur(5px); }
+
+        .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
+        .status-box { background: white; padding: 15px; border-radius: 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .status-box i { width: 40px; height: 40px; background: #e3f2fd; color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .status-info p { font-size: 9px; color: var(--gray); font-weight: 700; text-transform: uppercase; }
+        .status-info h4 { font-size: 14px; color: var(--text); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 20px 15px; }
+        .menu-item { text-align: center; cursor: pointer; }
+        .menu-icon { background: white; width: 55px; height: 55px; border-radius: 15px; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--secondary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .menu-item span { font-size: 10px; font-weight: 600; color: #555; }
+
+        .section-title { padding: 15px; font-weight: 700; color: var(--text); font-size: 18px; }
+        .card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin: 0 15px 15px; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #eee; outline: none; transition: 0.3s; font-size:14px; background:#f8f9fa; }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--primary); background:white; }
+        .input-group input:disabled { background: #e0e0e0; cursor: not-allowed; border-color: #ccc; color:#666; font-weight:bold;}
+        
+        .btn-primary { background: var(--secondary); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-danger { background: #e53935; color: white; width: 100%; padding: 12px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
+
+        .settings-list { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .settings-item { padding: 15px 20px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .settings-item:last-child { border-bottom: none; }
+        .settings-item i.left-icon { color: var(--primary); width: 30px; font-size: 16px; }
+        .settings-item span { font-size: 14px; font-weight: 500; }
+
+        .plan-card { background: white; margin: 15px; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f6; position: relative; }
+        .plan-header { background: var(--secondary); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+        .plan-price-box { background: #eef2f6; padding: 20px; text-align: center; margin: 15px; border-radius: 15px; }
+        .plan-price-box span { font-size: 12px; color: var(--secondary); font-weight: 600; text-transform: uppercase; }
+        .plan-price-box h2 { color: var(--secondary); font-size: 32px; margin-top: 5px; font-weight:800; }
+        .plan-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px 15px; }
+        .p-item { background: #f8f9fa; padding: 15px 10px; border-radius: 12px; text-align: center; border: 1px solid #f0f0f0; }
+        .p-item i { color: var(--secondary); margin-bottom: 8px; font-size: 20px; }
+        .p-item small { display: block; font-size: 10px; color: var(--gray); text-transform: uppercase; margin-bottom:2px; }
+        .p-item p { font-weight: 800; font-size: 15px; color:#222; }
+
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0; box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 1000; }
+        .nav-link { text-align: center; color: #aaa; font-size: 10px; font-weight: 600; cursor: pointer; }
+        .nav-link.active { color: var(--primary); }
+        .nav-link i { font-size: 18px; display: block; margin-bottom: 3px; }
+
+        .h-item { padding: 12px 0; border-bottom: 1px solid #eee; display:flex; justify-content: space-between; align-items: center;}
+        .h-item h4 { font-size: 14px; color: var(--text); }
+        .h-item p { font-size: 11px; color: var(--gray); margin-top:2px; }
+        .badge { padding: 4px 8px; border-radius: 8px; font-size: 10px; font-weight: 700; color: white; }
+        .bg-warning { background: var(--warning); }
+        .bg-success { background: var(--success); }
+        .bg-danger { background: #e53935; }
+
+        #loader { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.9); z-index: 9999; display:flex; align-items:center; justify-content:center; flex-direction:column; color:var(--primary); font-weight:bold; }
+        
+        .ad-container { margin: 15px; background: #000; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .ad-video-area { height: 180px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .play-btn-circle { width: 60px; height: 60px; background: #e0e0e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .play-btn-circle i { color: #333; font-size: 25px; margin-left: 5px; }
+        .run-video-btn { background: #58e596; color: white; text-align: center; padding: 15px; font-weight: 800; font-size: 16px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; outline: none; transition: 0.3s;}
+        .run-video-btn:active { background: #45b978; }
+        .run-video-btn:disabled { background: #666 !important; cursor: not-allowed; }
+
+        .admin-card { background: white; margin: 10px; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); color:#333; }
+        .user-row { background: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid var(--primary); }
+        
+        /* RULEBOOK MODAL CSS */
+        #rulebookModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; display: flex; align-items: center; justify-content: center; }
+        .rulebook-box { background: white; width: 90%; max-width: 400px; border-radius: 20px; padding: 25px 20px; text-align: center; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .rulebook-box h3 { color: var(--primary); margin-bottom: 10px; font-weight: 800; display:flex; align-items:center; justify-content:center; gap:10px; font-size: 20px; }
+        .rulebook-box h4 { font-size: 13px; color: #555; margin-bottom: 20px; }
+        .rulebook-list { text-align: left; font-size: 13px; color: #444; margin-bottom: 20px; line-height: 1.6; }
+        .rulebook-list p { margin-bottom: 10px; }
+        .btn-got-it { background: var(--secondary); color: white; width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+        .btn-got-it:active { transform: scale(0.95); }
+
+        /* ADVANCED ADMIN TABS CSS */
+        .admin-nav { display: flex; overflow-x: auto; background: #111; position: sticky; top: 0; z-index: 10; border-bottom: 2px solid #333; }
+        .admin-nav-item { flex: 1; min-width: 80px; text-align: center; color: white; padding: 15px 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+        .admin-nav-item.active { background: #e53935; color: white; }
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
+        .stat-box { background: #333; color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 10px; }
+        .stat-box h2 { color: #58e596; }
+    </style>
+</head>
+<body>
+
+    <div id="loader"><i class="fa-solid fa-spinner fa-spin fa-3x" style="margin-bottom:10px;"></i><p>Loading System...</p></div>
+
+    <!-- ================= DYNAMIC RULEBOOK NOTIFICATION MODAL ================= -->
+    <div id="rulebookModal" class="hidden">
+        <div class="rulebook-box">
+            <h3 id="rbTitle"><i class="fa-solid fa-bell"></i> NOTIFICATION</h3>
+            <h4 id="rbSubtitle">Loading...</h4>
+            <div class="rulebook-list" id="rbList">
+                <p>Loading rules...</p>
+            </div>
+            
+            <!-- Link Sharing Add-on -->
+            <div id="rbLinkContainer" class="hidden" style="margin-bottom: 20px; background: #f0f2f5; padding: 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; border: 1px dashed var(--primary);">
+                <span id="rbLinkText" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%; color: var(--secondary); font-weight: bold;">Loading...</span>
+                <button onclick="copyRbLink()" style="background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;"><i class="fa-solid fa-copy"></i> Copy</button>
+            </div>
+
+            <button class="btn-got-it" onclick="closeRulebook()">Got it!</button>
+        </div>
+    </div>
+
+    <!-- ================= AUTH PAGES ================= -->
+    <div id="loginPage" class="auth-container hidden">
+        <div class="auth-box">
+            <h2>Global invest</h2>
+            <p style="font-size:12px; color:#666; margin-bottom:20px;">Login to your account</p>
+            <div class="input-group"><input type="email" id="logEmail" placeholder="Email Address"></div>
+            <div class="input-group"><input type="password" id="logPass" placeholder="Password"></div>
+            <button class="btn-primary" onclick="loginUser()">LOGIN SECURELY</button>
+            <span class="link-text" onclick="toggleAuth('register')">New User? Create Account Here</span>
+        </div>
+    </div>
+
+    <div id="registerPage" class="auth-container hidden">
+        <div class="auth-box">
+            <h2>CREATE ACCOUNT</h2>
+            <p style="font-size:12px; color:#666; margin-bottom:20px;">WELCOME TO Global invest PLATFORM OFFICIAL!</p>
+            <div class="input-group"><input type="text" id="regName" placeholder="First Name"></div>
+            <div class="input-group"><input type="email" id="regEmail" placeholder="Email Address"></div>
+            <div class="input-group"><input type="password" id="regPass" placeholder="Password "></div>
+            <div class="input-group"><input type="password" id="regCPass" placeholder="Confirm Password"></div>
+            <div class="input-group"><input type="text" id="regInvite" placeholder="Invite Code "></div>
+            <button class="btn-primary" onclick="registerUser()">REGISTER NOW</button>
+            <span class="link-text" onclick="toggleAuth('login')">Already have account? Login</span>
+        </div>
+    </div>
+
+    <!-- ================= MAIN APP ================= -->
+    <div id="app-layout" class="hidden">
+        
+        <header>
+            <div class="logo" onclick="secretAdminTrigger()">Global invest</div>
+            <div>
+                <i class="fa-solid fa-gear" style="color:var(--gray); font-size: 20px; margin-right: 15px; cursor: pointer;" onclick="showPage('profilePage')"></i>
+                <i class="fa-solid fa-bell" style="color:var(--primary); font-size: 20px;" onclick="openRulebookManual()"></i>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <div id="dashPage" class="page">
+            
+            <!-- REAL-TIME LOW CREDIT WARNING TIMER BANNER -->
+            <div id="creditScoreWarningBanner" class="hidden" style="background: #e53935; color: white; margin: 15px; padding: 15px; border-radius: 20px; text-align: center; font-weight: bold; box-shadow: 0 4px 12px rgba(229,57,53,0.35);">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 22px; margin-bottom: 5px; color: #fff;"></i>
+                <h4 style="font-size: 14px; margin-bottom: 2px;">WARNING: Credit Score is <span id="creditScoreWarningVal">0</span>%</h4>
+                <p style="font-size: 11px; font-weight: 500; opacity: 0.95;">Apka account 48 hours me permanent block ho jayega:</p>
+                <h3 id="creditScoreTimerDisplay" style="font-size: 24px; margin: 6px 0; font-family: monospace; letter-spacing: 1.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">48:00:00</h3>
+                <p style="font-size: 9.5px; font-weight: normal; opacity: 0.9;">Fauran CSP code redeem karke apna credit score 25% se upar restore karein.</p>
+            </div>
+
+            <div class="dash-card">
+                <p style="font-size: 12px; opacity: 0.8;">Wallet Balance</p>
+                <h2 style="font-size: 36px; font-weight: 700;">Rs <span id="userBal">0.00</span></h2>
+                <p id="planExpiryText" style="font-size:10px; margin-top:5px; color:#fff; font-weight:bold;"></p>
+                <div class="dash-btns">
+                    <button class="btn-action btn-depo" onclick="showPage('plansPage')">Deposit Plan</button>
+                    <button class="btn-action btn-with" onclick="showPage('withdrawPage')">Withdraw</button>
+                </div>
+            </div>
+
+            <div class="status-grid">
+                <div class="status-box"><i class="fa-solid fa-chart-pie"></i><div class="status-info"><p>Total Invest</p><h4 id="s_inv">Rs 0</h4></div></div>
+                <div class="status-box"><i class="fa-solid fa-wallet"></i><div class="status-info"><p>Total With</p><h4 id="s_with">Rs 0</h4></div></div>
+                <div class="status-box"><i class="fa-solid fa-badge-percent" style="display:none;"></i><i class="fa-solid fa-spinner" style="color:var(--warning)"></i><div class="status-info"><p>Pending Dep</p><h4 id="s_pdep">Rs 0</h4></div></div>
+                <div class="status-box"><i class="fa-solid fa-clock"></i><div class="status-info"><p>Pending With</p><h4 id="s_pwith">Rs 0</h4></div></div>
+                <div class="status-box"><i class="fa-solid fa-gift"></i><div class="status-info"><p>Bonus</p><h4 id="s_bonus">Rs 10</h4></div></div>
+                <div class="status-box"><i class="fa-solid fa-users"></i><div class="status-info"><p>Active Team</p><h4 id="s_team">0</h4></div></div>
+                <!-- Credit Score Status Box -->
+                <div class="status-box"><i class="fa-solid fa-gauge-high"></i><div class="status-info"><p>Credit Score</p><h4 id="s_credit">100%</h4></div></div>
+                <!-- CAP Earning status-box precisely inside the red circle (8th spot) -->
+                <div class="status-box" onclick="showPage('capPage')" style="cursor:pointer;"><i class="fa-solid fa-cubes" style="color:var(--accent);"></i><div class="status-info"><p>CAP Earning</p><h4 id="s_cap_status">Join CAP</h4></div></div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showPage('plansPage')"><div class="menu-icon"><i class="fa-solid fa-layer-group"></i></div><span>Plans</span></div>
+                <div class="menu-item" onclick="showPage('adsPage')"><div class="menu-icon"><i class="fa-solid fa-play"></i></div><span>Daily Ads</span></div>
+                <div class="menu-item" onclick="showPage('promoPage')"><div class="menu-icon"><i class="fa-solid fa-ticket"></i></div><span>Promo</span></div>
+                <!-- CSP Redeem Menu Item placed next to Promo Code with CPU Icon -->
+                <div class="menu-item" onclick="showPage('cspPage')"><div class="menu-icon" style="color:var(--accent);"><i class="fa-solid fa-microchip"></i></div><span>CSP </span></div>
+                <!-- CSA Codes Display Tool Menu Item -->
+                <div class="menu-item" onclick="showPage('csaPage')"><div class="menu-icon" style="color:var(--success);"><i class="fa-solid fa-tags"></i></div><span>CSA </span></div>
+                <!-- History Menu Item shifted after CSP Code -->
+                <div class="menu-item" onclick="showPage('historyPage')"><div class="menu-icon"><i class="fa-solid fa-receipt"></i></div><span>History</span></div>
+                
+                <div class="menu-item" onclick="showPage('teamPage')"><div class="menu-icon"><i class="fa-solid fa-users-viewfinder"></i></div><span>Team</span></div>
+                <div class="menu-item" onclick="showPage('profilePage')"><div class="menu-icon"><i class="fa-solid fa-gear"></i></div><span>Setting</span></div>
+                <div class="menu-item" onclick="showPage('aboutPage')"><div class="menu-icon"><i class="fa-solid fa-circle-info"></i></div><span>About</span></div>
+                
+                <div class="menu-item" onclick="openSocial('whatsapp')"><div class="menu-icon" style="color:#25d366;"><i class="fa-brands fa-whatsapp"></i></div><span>WhatsApp</span></div>
+                <div class="menu-item" onclick="openSocial('facebook')"><div class="menu-icon" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></div><span>Facebook</span></div>
+                <div class="menu-item" onclick="openSocial('instagram')"><div class="menu-icon" style="color:#E4405F;"><i class="fa-brands fa-instagram"></i></div><span>Instagram</span></div>
+            </div>
+        </div>
+
+        <!-- WITHDRAW -->
+        <div id="withdrawPage" class="page hidden">
+            <div class="section-title">Withdraw Fund</div>
+            <div class="card">
+                <div class="payment-info" style="background:#e3f2fd; border-color:var(--primary); margin-bottom:20px; padding:15px; border-radius:15px; text-align:center;">
+                    <p style="font-size:12px;">Available Balance</p>
+                    <h3 style="color:var(--primary);">Rs <span id="w_balShow">0</span></h3>
+                    <p style="font-size:10px; color:#555; margin-top:5px;">Min Withdraw: Rs 1,200 | Max: Rs 50,000</p>
+                </div>
+                <div class="input-group">
+                    <label>Select Bank </label>
+                    <select id="withMethod"><option value="Easypaisa">Easypaisa</option><option value="JazzCash">JazzCash</option></select>
+                </div>
+                <div class="input-group"><label>Account name  </label><input type="text" id="withName" placeholder="NAME "></div>
+                <div class="input-group"><label>Account Number</label><input type="number" id="withNum" placeholder="03XXXXXXXXX"></div>
+                <div class="input-group"><label>Withdraw Amount</label><input type="number" id="withAmount" placeholder="Enter Amount "></div>
+                <button class="btn-primary" onclick="submitWithdraw()">SUBMIT WITHDRAWAL</button>
+            </div>
+        </div>
+
+        <!-- PROFILE SETTINGS -->
+        <div id="profilePage" class="page hidden">
+            <div style="background:var(--primary); padding:40px 20px; text-align:center; color:white; border-radius:0 0 30px 30px;">
+                <div style="width:80px; height:80px; background:white; border-radius:50%; margin: 0 auto 10px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:35px;"><i class="fa-solid fa-user"></i></div>
+                <h3 id="profNameTitle" style="margin-bottom:5px;">Loading...</h3>
+                <span id="profInviteCode" style="font-size:12px; display:block; margin-bottom:5px; color:#ddd;">Code: ----</span>
+                <span id="profCapUid" style="font-size:13px; display:block; margin-bottom:5px; color:#ffeb3b; font-weight:800;">CAP UID: --------</span>
+                <span id="profEmail" style="font-size:12px; display:block; margin-bottom:10px; color:#ddd;">Email: ----</span>
+                <span id="verifiedBadge" class="hidden" style="background:#00c853; color:white; font-size:10px; font-weight:800; padding:4px 12px; border-radius:10px; display:inline-block;"><i class="fa-solid fa-check-circle"></i> VERIFIED ACCOUNT</span>
+            </div>
+            <div style="padding: 15px;">
+                <div class="settings-list">
+                    <div class="settings-item" onclick="showPage('editProfilePage')">
+                        <span><i class="fa-solid fa-user-check left-icon"></i> Update Profile</span><i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                    </div>
+                    <div class="settings-item" onclick="showPage('securityPage')">
+                        <span><i class="fa-solid fa-shield-halved left-icon"></i> Account Security</span><i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                    </div>
+                    <div class="settings-item" onclick="showPage('historyPage')">
+                        <span><i class="fa-solid fa-receipt left-icon"></i> Transaction History</span><i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                    </div>
+                    <div class="settings-item" onclick="showPage('policyPage')">
+                        <span><i class="fa-solid fa-file-contract left-icon"></i> Privacy Policy</span><i class="fa-solid fa-chevron-right" style="color:#ccc;"></i>
+                    </div>
+                    <div class="settings-item" onclick="logoutUser()" style="color:red;">
+                        <span><i class="fa-solid fa-power-off left-icon" style="color:red;"></i> Logout Account</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCOUNT SECURITY PAGE -->
+        <div id="securityPage" class="page hidden">
+            <div class="section-title">Account Security</div>
+            <div class="card">
+                <div class="input-group">
+                    <label>Current Password</label>
+                    <input type="password" id="oldPass" placeholder="******">
+                </div>
+                <div class="input-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPass" placeholder="Minimum 6 chars">
+                </div>
+                <div class="input-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="newCPass" placeholder="******">
+                </div>
+                <button class="btn-primary" onclick="changeUserPassword()">CHANGE PASSWORD</button>
+            </div>
+        </div>
+
+        <!-- BIND PROFILE -->
+        <div id="editProfilePage" class="page hidden">
+            <div class="section-title">Bind Account Info</div>
+            <div class="card">
+                <p style="font-size:11px; color:red; margin-bottom:15px;">Note: Phone number can only be bound once for verification. Please double check.</p>
+                <div class="input-group"><label>Full Name</label><input type="text" id="updName" placeholder="Your Name"></div>
+                <div class="input-group"><label>Mobile Number</label><input type="number" id="updPhone" placeholder="03XXXXXXXXX"></div>
+                <button class="btn-primary" onclick="saveProfileInfo()">VERIFY </button>
+            </div>
+        </div>
+
+        <!-- ABOUT & POLICY -->
+        <div id="aboutPage" class="page hidden">
+            <div class="section-title">About Platform</div>
+            <div class="card" style="text-align:center;">
+                <h2 style="color:var(--primary); margin-bottom:10px;">Global invest v2.1.0</h2>
+                <p style="font-size:13px; color:#555; line-height: 1.6;">Global invest is a premium earning platform designed to give high returns on investments. We provide a sustainable way to grow your wealth through our highly curated ad network. Activate a plan, watch videos, build your team, and enjoy daily seamless profits directly into your wallet.</p>
+            </div>
+        </div>
+
+        <div id="policyPage" class="page hidden">
+            <div class="section-title">Privacy Policy </div>
+            <div class="card" style="font-size: 12px; color: #444; line-height: 1.8;">
+                <h4 style="color:var(--primary); margin-bottom: 5px;">1. Information Collection</h4>
+                <p style="margin-bottom: 10px;">We collect necessary details like your Name and Phone Number strictly for account security and withdrawal verification. Your data is encrypted and kept secure.</p>
+                <h4 style="color:var(--primary); margin-bottom: 5px;">2. Earning & Withdrawals</h4>
+                <p style="margin-bottom: 10px;">To ensure a stable system, users must meet specific conditions to withdraw funds. Company holds the right to modify these rules for platform stability.</p>
+                <h4 style="color:var(--primary); margin-bottom: 5px;">3. Account Ban Policy</h4>
+                <p>Creating multiple fake accounts, using abusive language in support, or bypassing system protocols will result in an immediate permanent ban without any refund.</p>
+            </div>
+        </div>
+
+        <!-- TEAM PAGE -->
+        <div id="teamPage" class="page hidden">
+            <div class="section-title">My Team Details</div>
+            <div class="card" style="text-align:center;">
+                <p style="font-size:12px; margin-bottom:10px; color:#555;">Share your Invite Link and get 15% commission!</p>
+                <div style="display:flex; align-items: center; gap:10px; margin-bottom: 20px;">
+                    <input type="text" id="inviteLinkBox" readonly style="flex:1; padding:12px; border-radius:10px; border:1px solid #ddd; font-size:10px; font-weight:bold; background:#f5f5f5;">
+                    <button style="background:var(--secondary); color:white; border:none; padding:12px 18px; border-radius:10px; font-size:14px; cursor:pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" onclick="copyInviteLink()"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <h3 style="color:var(--primary); margin-bottom:25px;">Active Members: <span id="t_activeCount">0</span></h3>
+                <h4 style="text-align:left; font-size:15px; color:var(--text); margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:8px;"><i class="fa-solid fa-users"></i> Invite History</h4>
+                <div id="listTeam" style="text-align:left;">
+                    <p style="font-size:12px; text-align:center; color:#888;">No team members found</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLANS & DEPOSIT -->
+        <div id="plansPage" class="page hidden"><div class="section-title">Investment Packages</div><div id="plansCont"></div></div>
+        
+        <div id="depositFormPage" class="page hidden">
+            <div class="section-title">Complete Payment</div>
+            <div class="card">
+                <p style="font-size:12px; color:var(--gray); text-align:center; margin-bottom:10px;">Please send exact amount to the following account to activate <b id="d_planName">VIP X</b></p>
+                <div class="payment-info" style="background: #fff3e0; border: 1px dashed var(--warning); padding: 15px; border-radius: 15px; margin-bottom: 20px; text-align: center;">
+                    <p style="font-size:12px; font-weight:700; color:#333;">SEND AMOUNT: <span style="color:var(--primary)">Rs <span id="d_amount">0</span></span></p>
+                    
+                    <!-- Modified Account Number / IBAN with Blue Copy Button -->
+                    <p style="font-size:12px; margin-top:10px;"> EASYPAISA ACCOUNT </p>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 5px 0; max-width: 100%;">
+                        <h3 id="adminAccountNumber" style="color: #e65100; margin: 0; word-break: break-all; text-align: left;">03047374445</h3>
+                        <button onclick="copyAdminNumber()" style="background: var(--accent); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"><i class="fa-solid fa-copy"></i> Copy</button>
+                    </div>
+
+                    <p style="font-size:14px; font-weight:700;">Account Name: Asian Yasmeen</p>
+                </div>
+                <div class="input-group"><label>Sender Account Name</label><input type="text" id="depSenderName" placeholder="Ali Raza"></div>
+                <div class="input-group"><label>Sender Account Number</label><input type="number" id="depSenderNum" placeholder="03XXXXXXXXX"></div>
+                <div class="input-group"><label>Payment Trx ID / UID</label><input type="text" id="depTrxId" placeholder="TrxID "></div>
+                <button class="btn-primary" onclick="submitDepositProof()">SUBMIT FOR APPROVAL</button>
+            </div>
+        </div>
+
+        <!-- PROMO -->
+        <div id="promoPage" class="page hidden">
+            <div class="section-title">Redeem Promo Code</div>
+            <div class="card">
+                <div class="input-group"><input type="text" id="promoInput" placeholder="Enter Promo Code..." style="text-transform:uppercase; text-align:center; font-weight:bold; letter-spacing:2px;"></div>
+                <button class="btn-primary" onclick="claimPromo()">CLAIM REWARD</button>
+            </div>
+        </div>
+
+        <!-- CSP REDEEM PAGE -->
+        <div id="cspPage" class="page hidden">
+            <div class="section-title">Redeem CSP Code</div>
+            <div class="card">
+                <p style="font-size:12px; color:var(--gray); text-align:center; margin-bottom:15px;">Enter your Credit Score Code (CSP) to restore your Credit Score.</p>
+                <div class="input-group">
+                    <input type="text" id="cspInput" placeholder="ENTER CSP CODE..." style="text-transform:uppercase; text-align:center; font-weight:bold; letter-spacing:2px;">
+                </div>
+                <button class="btn-primary" onclick="claimCSP()">CLAIM CREDIT SCORE</button>
+            </div>
+        </div>
+
+        <!-- CSA CODES DISPLAY PAGE -->
+        <div id="csaPage" class="page hidden">
+            <div class="section-title">Active CSA Codes</div>
+            <div class="card">
+                <p style="font-size:12px; color:var(--gray); text-align:center; margin-bottom:15px;">Aap in active CSA codes ko copy karke "CSP Code" page par redeem kar sakte hain [1]. Expired codes automatically yahan se remove ho jate hain [1].</p>
+                <div id="listCsaCodes">
+                    <p style="font-size:12px; text-align:center; color:#888;">Loading CSA codes...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- =================== NEW CAP SYSTEM PAGES =================== -->
+
+        <!-- PAGE 1: CAP Welcome & Select desk -->
+        <div id="capPage" class="page hidden">
+            <div class="section-title">CAP Earning System</div>
+            <div class="card" style="text-align:center;">
+                <p style="font-size:12px; color:var(--gray); margin-bottom:15px;">
+                    Your CAP UID: <b id="capUserUid8" style="color:var(--primary); font-size:14px;">--------</b>
+                </p>
+                
+                <div style="display:flex; gap:10px; margin-bottom:20px;">
+                    <button id="btnSimpleEarnTab" class="btn-primary" style="flex:1; background:var(--secondary);" onclick="switchCapTab('simple')">Simple CAP</button>
+                    <button id="btnUltraEarnTab" class="btn-primary" style="flex:1; background:var(--gray);" onclick="switchCapTab('ultra')">Ultra CAP</button>
+                </div>
+
+                <!-- DYNAMIC INFO AREA FOR SIMPLE / ULTRA CHANNELS -->
+                <div id="capDynamicTabInfo" style="background:#e3f2fd; border:1px solid #90caf9; border-radius:15px; padding:15px; margin-bottom:20px; text-align:left; font-size:12px; line-height:1.6; color:#333;">
+                    <!-- Injected dynamically by Javascript -->
+                </div>
+
+                <div style="padding: 10px 0;">
+                    <i class="fa-solid fa-users-rectangle" style="font-size: 45px; color: var(--secondary); margin-bottom: 15px;"></i>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Select & Enter CAP UID</h3>
+                    <p style="font-size:12px; color:#555; line-height: 1.6; margin-bottom:20px;">
+                        Aage barhne ke liye apna 8-digit unique CAP UID confirm karein aur pool start karein [1].
+                    </p>
+                    <div class="input-group">
+                        <label style="text-align:center;">Confirm Your 8-Digit CAP UID</label>
+                        <input type="text" id="capRegUidInput" placeholder="Enter Your UID" maxlength="8" style="text-align:center; font-weight:bold; font-size:16px; background: #fff; border: 1.5px solid var(--primary);">
+                    </div>
+                    <button class="btn-primary" onclick="proceedToCapActionPage()" style="background:var(--success); font-size:16px;">GET START</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: CAP Core Action Desk -->
+        <div id="capActionPage" class="page hidden">
+            <div style="background:var(--primary); padding:20px 15px; border-radius: 0 0 25px 25px; color:white; position:relative;">
+                <h3 style="font-size:18px; font-weight:700;"><i class="fa-solid fa-circle-nodes"></i> CAP Action Desk</h3>
+                <p style="font-size:11px; opacity:0.8;">Selected Pool: <span id="capActionTypeLabel" style="font-weight:bold; text-transform:uppercase;">Simple</span></p>
+                
+                <!-- TOP RIGHT CORNER CONTROLS -->
+                <div style="position:absolute; top:12px; right:15px; display:flex; flex-direction:column; align-items:flex-end; gap:8px; width:60%; z-index: 10;">
+                    <!-- Redeem Icon Button -->
+                    <button onclick="showPage('capRedeemPage')" style="background:var(--warning); border:none; color:white; padding:6px 10px; border-radius:8px; font-weight:bold; font-size:10px; cursor:pointer; display:flex; align-items:center; gap:5px; box-shadow:0 3px 6px rgba(0,0,0,0.15);">
+                        <i class="fa-solid fa-gift" style="font-size:11px;"></i> Redeem Code
+                    </button>
+                    <!-- Invite UID Section -->
+                    <div style="display:flex; background:rgba(255,255,255,0.25); border-radius:6px; overflow:hidden; border:1px solid rgba(255,255,255,0.4); max-width:100%;">
+                        <input type="text" id="capInviteUidInput" placeholder="Invite UID" maxlength="8" style="width:70px; border:none; padding:4px; font-size:10px; background:transparent; color:white; outline:none; font-weight:bold; text-align:center;">
+                        <button onclick="inviteUserByUid8()" style="background:var(--accent); border:none; color:white; padding:4px 8px; font-size:10px; font-weight:bold; cursor:pointer;">Invite</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Layout Details -->
+            <div class="card" style="margin-top:20px; text-align:center;">
+                <div id="capActionCoreArea">
+                    <!-- Timer Status or Core components generated dynamically by JS -->
+                </div>
+            </div>
+            
+            <button class="btn-primary" onclick="showPage('capPage')" style="margin: 0 15px 20px; width:calc(100% - 30px); background:var(--gray);"><i class="fa-solid fa-arrow-left"></i> Change Pool Type</button>
+        </div>
+
+        <!-- PAGE 3: CAP Reward Redeem Desk -->
+        <div id="capRedeemPage" class="page hidden">
+            <div class="section-title">Claim CAP Earning Code</div>
+            <div class="card" style="text-align:center;">
+                <i class="fa-solid fa-money-bill-trend-up" style="font-size:50px; color:var(--success); margin-bottom:15px;"></i>
+                <h3 style="color:var(--primary); margin-bottom:10px;">Claim Reward</h3>
+                <p style="font-size:12px; color:#555; line-height:1.6; margin-bottom:20px;">
+                    Enter your active random reward code received from completing the 48-hour group timer to add instant payouts into your balance [1].
+                </p>
+                <div class="input-group">
+                    <label style="text-align:center; font-weight:bold;">Redeem Code</label>
+                    <input type="text" id="capRedeemInput" placeholder="ENTER CODE..." style="text-transform:uppercase; text-align:center; font-weight:bold; letter-spacing:2px; font-size:16px; border:1.5px solid var(--secondary);">
+                </div>
+                <button class="btn-primary" onclick="redeemCapCode()" style="background:var(--success);">CLAIM AMOUNT SECURELY</button>
+            </div>
+            <button class="btn-primary" onclick="showPage('capActionPage')" style="margin: 0 15px; width:calc(100% - 30px); background:var(--gray);"><i class="fa-solid fa-arrow-left"></i> Back to Action Desk</button>
+        </div>
+
+        <!-- ============================================================= -->
+
+        <div id="historyPage" class="page hidden">
+            <div class="section-title">Transaction History</div>
+            <div class="card">
+                <h4 style="color:var(--primary); font-size:15px; margin-bottom:10px;"><i class="fa-solid fa-arrow-down" style="color:var(--success);"></i> Deposits</h4>
+                <div id="listDeposits"><p style="font-size:12px; text-align:center; color:#888;">No deposit history found</p></div>
+                <h4 style="color:var(--primary); font-size:15px; margin-top:20px; margin-bottom:10px;"><i class="fa-solid fa-arrow-up" style="color:red;"></i> Withdrawals</h4>
+                <div id="listWithdraws"><p style="font-size:12px; text-align:center; color:#888;">No withdrawal history found</p></div>
+            </div>
+        </div>
+
+        <!-- NEW ADS SYSTEM -->
+        <div id="adsPage" class="page hidden">
+            <div class="section-title">Watch Daily Ads</div>
+            <div id="adsContainer">
+                <!-- Ads Generated by JS or Blocked if no plan -->
+            </div>
+        </div>
+
+        <!-- EARN PRO company DASHBOARD  -->
+        <div id="adminPage" class="page hidden" style="background:#222; min-height:100vh; padding-bottom:50px;">
+            <div style="background:#111; padding:20px; text-align:center; color:white; border-bottom:1px solid #333;">
+                <h2><i class="fa-solid fa-user-secret" style="color:#e53935;"></i> company dashboard </h2>
+                <button onclick="showPage('dashPage')" style="margin-top:10px; padding:6px 18px; background:white; color:black; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Exit </button>
+            </div>
+
+            <div class="admin-nav">
+                <div class="admin-nav-item active" onclick="switchAdminTab('adm-dash', this)">Dashboard</div>
+                <div class="admin-nav-item" onclick="switchAdminTab('adm-depo', this)">Deposits</div>
+                <div class="admin-nav-item" onclick="switchAdminTab('adm-with', this)">Withdraws</div>
+                <div class="admin-nav-item" onclick="switchAdminTab('adm-user', this)">Users</div>
+                <div class="admin-nav-item" onclick="switchAdminTab('adm-set', this)">Settings</div>
+            </div>
+
+            <!-- TAB 1: DASHBOARD STATS -->
+            <div id="adm-dash" class="admin-tab-content active" style="padding:15px;">
+                <div class="stat-box"><h4>Total Users</h4><h2 id="st_users">0</h2></div>
+                <div class="stat-box"><h4>Total Member Balances</h4><h2 id="st_bal">Rs 0</h2></div>
+                <div class="stat-box"><h4>Total Investments</h4><h2 id="st_inv">Rs 0</h2></div>
+                <div class="stat-box"><h4>Pending Withdrawals</h4><h2 id="st_pwith" style="color:#ffb300;">Rs 0</h2></div>
+            </div>
+
+            <!-- TAB 2: DEPOSITS -->
+            <div id="adm-depo" class="admin-tab-content" style="padding:10px;">
+                <h3 style="margin:10px 0; color:#00c853;"><i class="fa-solid fa-money-bill-transfer"></i> Pending Deposits</h3>
+                <div id="adminPendingDeposits" style="font-size:12px;">Loading...</div>
+            </div>
+
+            <!-- TAB 3: WITHDRAWALS -->
+            <div id="adm-with" class="admin-tab-content" style="padding:10px;">
+                <h3 style="margin:10px 0; color:#e53935;"><i class="fa-solid fa-building-columns"></i> Pending Withdrawals</h3>
+                <div id="adminPendingWithdraws" style="font-size:12px;">Loading...</div>
+            </div>
+
+            <!-- TAB 4: USER MANAGEMENT -->
+            <div id="adm-user" class="admin-tab-content" style="padding:10px;">
+                <h3 style="margin:10px 0; color:white;">User Management</h3>
+                <div id="adminUserList" style="font-size:12px;">Loading Users...</div>
+            </div>
+            
+            <!-- TAB 5: SETTINGS -->
+            <div id="adm-set" class="admin-tab-content" style="padding:10px;">
+                
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px; color:var(--primary);"><i class="fa-solid fa-bell" style="color:var(--primary);"></i> Edit Rulebook notification </h3>
+                    <p style="font-size:11px; margin-bottom:10px; color:#555;">Update the notification that users see.</p>
+                    <div class="input-group"><label> Title</label><input type="text" id="admRbTitle" placeholder=". NOTIFICATION"></div>
+                    <div class="input-group"><label>notification Subtitle</label><input type="text" id="admRbSubtitle" placeholder=" RULEBOOK FROM OFFICIAL"></div>
+                    <div class="input-group">
+                        <label>Rules </label>
+                        <textarea id="admRbRules" rows="6" placeholder="1. Rule one&#10;2. Rule two&#10;3. Rule three"></textarea>
+                    </div>
+                    <!-- Added Notification Link Settings -->
+                    <div class="input-group">
+                        <label>Notification Share Link</label>
+                        <input type="text" id="admRbLink" placeholder="https://t.me/yourgroup">
+                    </div>
+                    <button class="btn-primary" onclick="saveRulebookSettings()">Save Rulebook</button>
+                </div>
+
+                <!-- DYNAMIC CAP SYSTEM CONFIGURATIONS IN ADMIN PANEL WITH 1-8 AND 1-12 VALIDATIONS [1] -->
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px; color:var(--accent);"><i class="fa-solid fa-cubes"></i> CAP Earning Settings</h3>
+                    <p style="font-size:11px; margin-bottom:10px; color:#555;">Simple (1 to 8) aur Ultra (1 to 12) ke pools aur group timers ko live update karein [1].</p>
+                    <div class="input-group">
+                        <label>Simple Earn Pool Size 1 to 8</label>
+                        <input type="number" id="admCapSimpleSize" min="1" max="8" placeholder="4">
+                    </div>
+                    <div class="input-group">
+                        <label>Ultra Earn Pool Size 1 to 12</label>
+                        <input type="number" id="admCapUltraSize" min="1" max="12" placeholder="6">
+                    </div>
+                    <div class="input-group">
+                        <label>Timer Duration Value</label>
+                        <input type="number" id="admCapTimerValue" min="1" placeholder="48">
+                    </div>
+                    <div class="input-group">
+                        <label>Timer Unit</label>
+                        <select id="admCapTimerUnit">
+                            <option value="hours">Hours</option>
+                            <option value="minutes">Minutes</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="saveCapAdminSettings()">Save CAP Settings</button>
+                </div>
+
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px;">Social App Links </h3>
+                    <div class="input-group"><label>WhatsApp Link</label><input type="text" id="admWA" placeholder="https://chat.whatsapp.com/..."></div>
+                    <div class="input-group"><label>Facebook Link</label><input type="text" id="admFB" placeholder="https://facebook.com/..."></div>
+                    <div class="input-group"><label>Instagram Link</label><input type="text" id="admInsta" placeholder="https://instagram.com/..."></div>
+                    <div class="input-group"><label>Website Link</label><input type="text" id="admWeb" placeholder="https://..."></div>
+                    
+                    <hr style="margin:15px 0; border:1px solid #eee;">
+                    <h3 style="margin-bottom:10px;">Withdrawal Rules</h3>
+                    <div class="input-group"><label>Withdraw Active Team Condition</label><input type="number" id="admWithCond" placeholder="5"></div>
+                    
+                    <button class="btn-primary" onclick="saveAdminSettings()">Save App Settings</button>
+                    
+                    <hr style="margin:15px 0; border:1px solid #eee;">
+                    <h3 style="color:#e53935; margin-bottom:10px;"><i class="fa-solid fa-ban"></i> Stop Global Earnings</h3>
+                    <div class="input-group">
+                        <select id="admStopEarn">
+                            <option value="false">Earnings ACTIVE </option>
+                            <option value="true">Earnings STOPPED </option>
+                        </select>
+                    </div>
+                    <div class="input-group"><label>Reason for Stopping</label><input type="text" id="admStopReason" placeholder="System Upgrading..."></div>
+                    <button class="btn-danger" onclick="saveEarningStatus()">Update Earning Status</button>
+                </div>
+
+                <!-- Global Credit Score Adjustor -->
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px; color:var(--accent);"><i class="fa-solid fa-gauge-high"></i> Global Credit Score Adjustor</h3>
+                    <p style="font-size:11px; margin-bottom:10px; color:#555;">Duniya bhar ke sabhi users ka credit score badhane ya ghatane ke liye (+) ya (-) amount likhen.</p>
+                    <div class="input-group"><input type="number" step="any" id="admGlobalCsAmt" placeholder="Example: 10 or -15"></div>
+                    <button class="btn-primary" onclick="adjustGlobalCreditScore()">APPLY TO ALL USERS</button>
+                </div>
+
+                <!-- Create Promo Code -->
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px;">Create Promo Code</h3>
+                    <div class="input-group"><input type="text" id="admPromoCode" placeholder="Code Name "></div>
+                    <div class="input-group"><input type="number" id="admPromoAmt" placeholder="Reward Amount"></div>
+                    <button class="btn-primary" onclick="adminCreatePromo()">Generate Promo</button>
+                </div>
+
+                <!-- Create CSP System Tool -->
+                <div class="admin-card">
+                    <h3 style="margin-bottom:10px; color:var(--primary);"><i class="fa-solid fa-key"></i> Create CSP </h3>
+                    <div class="input-group"><input type="text" id="admCspCode" placeholder="CSP CODE NAME"></div>
+                    <div class="input-group"><input type="number" id="admCspAmt" placeholder="Credit Score Amount to Add "></div>
+                    <div class="input-group"><input type="number" id="admCspExpiry" placeholder="Expiry time in Hours"></div>
+                    <button class="btn-primary" onclick="adminCreateCSP()">GENERATE CSP CODE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <div class="nav-link active" onclick="showPage('dashPage', this)"><i class="fa-solid fa-house"></i><span>Home</span></div>
+            <div class="nav-link" onclick="showPage('plansPage', this)"><i class="fa-solid fa-gem"></i><span>Plans</span></div>
+            <div class="nav-link" onclick="showPage('adsPage', this)"><i class="fa-solid fa-play"></i><span>Ads</span></div>
+            <div class="nav-link" onclick="showPage('profilePage', this)"><i class="fa-solid fa-user-gear"></i><span>Profile</span></div>
+        </nav>
+    </div>
+
+    <!-- ================= FIREBASE LOGIC ================= -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, set, get, onValue, update, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRfMjCHJWBpXeYCVAM1hfkuzwWN6mnvcM",
+            authDomain: "pro-earning-1.firebaseapp.com",
+            projectId: "pro-earning-1",
+            storageBucket: "pro-earning-1.firebasestorage.app",
+            messagingSenderId: "791435714626",
+            appId: "1:791435714626:web:734260f54bffc6e7814ddb",
+            databaseURL: "https://pro-earning-1-default-rtdb.firebaseio.com"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+
+        let currentUser = null;
+        let userData = {};
+        let globalSettings = {};
+        let selectedPlan = {};
+        let allUsersCache = {}; 
+        let rulebookShown = false; 
+        let creditScoreInterval = null;
+        let creditWarningUIInterval = null; // UI element tracking low credit warning time
+        let selectedCapTab = 'simple'; // 'simple' or 'ultra'
+        let currentCapGroupId = null;
+        let capTimerInterval = null;
+        let capGroupListenerUnsubscribe = null;
+
+        // Elements selection
+        const loader = document.getElementById('loader');
+        const appLayout = document.getElementById('app-layout');
+
+        // Dynamic helper to deduct Credit Score on any copy actions
+        window.deductCreditScoreForCopy = async () => {
+            if (currentUser && userData) {
+                let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                let newScore = currentScore - 0.98;
+                if (newScore < 0) newScore = 0;
+
+                let updates = { creditScore: newScore };
+                if (newScore <= 25) {
+                    updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+                await update(ref(db, 'users/' + currentUser.uid), updates);
+            }
+        };
+
+        // Starts periodic subtraction (-0.50 credit score every 25 seconds when app is active)
+        const startCreditScoreDeductionTimer = () => {
+            if (creditScoreInterval) clearInterval(creditScoreInterval);
+            creditScoreInterval = setInterval(async () => {
+                if (currentUser && userData && userData.creditScore !== undefined && !userData.isBlocked) {
+                    let currentScore = userData.creditScore;
+                    let newScore = currentScore - 0.50;
+                    if (newScore < 0) newScore = 0;
+
+                    let updates = { creditScore: newScore };
+                    if (newScore <= 25) {
+                        updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                    } else {
+                        updates.scoreThresholdTime = null;
+                    }
+                    await update(ref(db, 'users/' + currentUser.uid), updates);
+                }
+            }, 25000); // 25 seconds
+        };
+
+        const stopCreditScoreDeductionTimer = () => {
+            if (creditScoreInterval) {
+                clearInterval(creditScoreInterval);
+                creditScoreInterval = null;
+            }
+        };
+
+        // Modal Functions
+        window.closeRulebook = () => {
+            document.getElementById('rulebookModal').classList.add('hidden');
+        };
+        window.openRulebookManual = () => {
+            document.getElementById('rulebookModal').classList.remove('hidden');
+        };
+        window.copyRbLink = async () => {
+            const linkText = document.getElementById('rbLinkText').innerText;
+            await window.deductCreditScoreForCopy();
+            if(navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(linkText).then(() => alert("Link Copied Successfully! (-0.98 Credit Score)"));
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = linkText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert("Link Copied Successfully! (-0.98 Credit Score)");
+                } catch (err) {
+                    alert("Failed to copy link.");
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        // Copy Admin Account / IBAN Function
+        window.copyAdminNumber = async () => {
+            const numText = document.getElementById('adminAccountNumber').innerText;
+            await window.deductCreditScoreForCopy();
+            if(navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(numText).then(() => alert("IBAN COPY SUCCESSFULY (-0.98 Credit Score)"));
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = numText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert("");
+                } catch (err) {
+                    alert("Failed to copy.");
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        // Secret Admin click trigger (Tap Logo 5 times)
+        let adminClicks = 0;
+        window.secretAdminTrigger = () => {
+            adminClicks++;
+            if(adminClicks >= 5) {
+                adminClicks = 0;
+                alert("Secret company dashboard Unlocked!");
+                openAdminPanel();
+            }
+        };
+
+        // Check URL for invite code extraction
+        window.onload = () => {
+            let currentUrl = window.location.href;
+            if(currentUrl.includes('invite.code?/')) {
+                let extractedCode = currentUrl.split('invite.code?/')[1];
+                if(extractedCode) {
+                    extractedCode = extractedCode.replace(/[^0-9]/g, ''); 
+                    document.getElementById('regInvite').value = extractedCode;
+                    toggleAuth('register');
+                }
+            }
+        };
+
+        // Checks if user is already locked into an active CAP group [1]
+        const checkUserActiveGroup = async () => {
+            const snap = await get(ref(db, 'cap_groups'));
+            let foundGroupId = null;
+            let foundGroupType = null;
+            if (snap.exists()) {
+                snap.forEach(child => {
+                    const g = child.val();
+                    if (g.members && g.members[currentUser.uid]) {
+                        foundGroupId = child.key;
+                        foundGroupType = g.type;
+                    }
+                });
+            }
+            return { groupId: foundGroupId, type: foundGroupType };
+        };
+
+        window.showPage = (id, el) => {
+            if (capTimerInterval) {
+                clearInterval(capTimerInterval);
+                capTimerInterval = null;
+            }
+            if (capGroupListenerUnsubscribe) {
+                capGroupListenerUnsubscribe();
+                capGroupListenerUnsubscribe = null;
+            }
+            
+            // Bypass Welcome Screen if User possesses registered active group session [1]
+            if (id === 'capPage') {
+                loader.classList.remove('hidden');
+                checkUserActiveGroup().then(res => {
+                    loader.classList.add('hidden');
+                    if (res.groupId) {
+                        currentCapGroupId = res.groupId;
+                        selectedCapTab = res.type;
+                        showPage('capActionPage'); // Redirect directly to team action desk [1]
+                    } else {
+                        switchCapTab('simple');
+                        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+                        document.getElementById('capPage').classList.remove('hidden');
+                    }
+                }).catch(err => {
+                    loader.classList.add('hidden');
+                    switchCapTab('simple');
+                    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+                    document.getElementById('capPage').classList.remove('hidden');
+                });
+                return;
+            }
+
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            if(el) {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                if(el.classList) el.classList.add('active');
+            }
+            window.scrollTo(0,0);
+            if(id === 'historyPage') loadHistory();
+            if(id === 'teamPage') loadTeamHistory();
+            if(id === 'adsPage') renderAds();
+            if(id === 'csaPage') loadCSA();
+            if(id === 'capActionPage') {
+                renderCapActionPage();
+            }
+            if(id === 'withdrawPage') {
+                if (document.getElementById('w_condText')) {
+                    document.getElementById('w_condText').innerText = globalSettings.withdrawCondition || 5;
+                }
+            }
+        };
+
+        window.toggleAuth = (type) => {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('registerPage').classList.add('hidden');
+            if(type === 'login') document.getElementById('loginPage').classList.remove('hidden');
+            else document.getElementById('registerPage').classList.remove('hidden');
+        };
+
+        // LOAD GLOBAL SETTINGS & RULEBOOK
+        onValue(ref(db, 'settings'), (snap) => {
+            if(snap.exists()) {
+                globalSettings = snap.val();
+                
+                // Parse and inject Rulebook data dynamically
+                let rb = globalSettings.rulebook || {};
+                let titleText = rb.title || "NOTIFICATION";
+                let subText = rb.subtitle || "RULEBOOK : FROM PLATFORM OFFICIAL";
+                let rulesRaw = rb.rules || "1. Do not use third party payment.\n2. Invite 5 friends to withdraw.\n3. Daily withdrawal limit 3 times.";
+                let shareLink = rb.link || "";
+                
+                document.getElementById('rbTitle').innerHTML = `<i class="fa-solid fa-bell"></i> ${titleText}`;
+                document.getElementById('rbSubtitle').innerText = subText;
+                
+                let rulesHTML = "";
+                rulesRaw.split('\n').forEach(line => {
+                    if(line.trim() !== '') rulesHTML += `<p>${line.trim()}</p>`;
+                });
+                document.getElementById('rbList').innerHTML = rulesHTML;
+
+                // Handle Shared Link visibility
+                if (shareLink.trim() !== "") {
+                    document.getElementById('rbLinkContainer').classList.remove('hidden');
+                    document.getElementById('rbLinkText').innerText = shareLink;
+                } else {
+                    document.getElementById('rbLinkContainer').classList.add('hidden');
+                }
+            }
+        });
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                startCreditScoreDeductionTimer(); // Start periodic subtraction
+                onValue(ref(db, 'users/' + user.uid), async (snap) => {
+                    if (snap.exists()) {
+                        userData = snap.val();
+                        
+                        if(userData.isBlocked) {
+                            alert("ACCOUNT BLOCKED by company .\nReason: " + (userData.blockReason || "Violation of rules."));
+                            stopCreditScoreDeductionTimer();
+                            if (creditWarningUIInterval) clearInterval(creditWarningUIInterval);
+                            signOut(auth);
+                            return;
+                        }
+
+                        // Auto-assign random 8-digit CAP UID if not present
+                        if (!userData.uid8) {
+                            const uniqueUid8 = Math.floor(10000000 + Math.random() * 90000000).toString();
+                            await update(ref(db, 'users/' + user.uid), { uid8: uniqueUid8 });
+                            userData.uid8 = uniqueUid8;
+                        }
+
+                        // === CREDIT SCORE DYNAMIC CHECKS ===
+                        let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                        
+                        // Check <= 25% Auto block logic (48 hours boundary)
+                        if (currentScore <= 25) {
+                            if (!userData.scoreThresholdTime) {
+                                // Record the timestamp when score falls to <= 25%
+                                let timestamp = Date.now();
+                                await update(ref(db, 'users/' + user.uid), { scoreThresholdTime: timestamp });
+                                userData.scoreThresholdTime = timestamp;
+                            } else {
+                                let elapsed = Date.now() - userData.scoreThresholdTime;
+                                let limit = 48 * 60 * 60 * 1000; // 48 Hours in Milliseconds
+                                if (elapsed >= limit) {
+                                    await update(ref(db, 'users/' + user.uid), { 
+                                        isBlocked: true, 
+                                        blockReason: "Credit score remained 25% or below for over 48 hours." 
+                                    });
+                                    alert("ACCOUNT PERMANENTLY BLOCKED!\nYour Credit Score remained 25% or below for more than 48 hours.");
+                                    stopCreditScoreDeductionTimer();
+                                    if (creditWarningUIInterval) clearInterval(creditWarningUIInterval);
+                                    signOut(auth);
+                                    return;
+                                }
+                            }
+                        } else {
+                            // If score is restored above 25%, clear the block timer
+                            if (userData.scoreThresholdTime) {
+                                await update(ref(db, 'users/' + user.uid), { scoreThresholdTime: null });
+                                userData.scoreThresholdTime = null;
+                            }
+                        }
+
+                        // === LIVE UI TIMER & WARNING BANNER LOGIC FOR CREDIT <= 25% ===
+                        const warningBanner = document.getElementById('creditScoreWarningBanner');
+                        const warningValEl = document.getElementById('creditScoreWarningVal');
+                        const timerDisplay = document.getElementById('creditScoreTimerDisplay');
+                        
+                        if (warningBanner) {
+                            if (currentScore <= 25 && userData.scoreThresholdTime) {
+                                warningBanner.classList.remove('hidden');
+                                if (warningValEl) warningValEl.innerText = currentScore.toFixed(3);
+                                
+                                if (creditWarningUIInterval) clearInterval(creditWarningUIInterval);
+                                
+                                const updateUIWarningTimer = () => {
+                                    let elapsed = Date.now() - userData.scoreThresholdTime;
+                                    let limit = 48 * 60 * 60 * 1000;
+                                    let remaining = limit - elapsed;
+                                    
+                                    if (remaining <= 0) {
+                                        if (timerDisplay) timerDisplay.innerText = "00:00:00";
+                                        clearInterval(creditWarningUIInterval);
+                                    } else {
+                                        let hrs = Math.floor(remaining / (3600 * 1000));
+                                        let mins = Math.floor((remaining % (3600 * 1000)) / (60 * 1000));
+                                        let secs = Math.floor((remaining % (60 * 1000)) / 1000);
+                                        
+                                        if (timerDisplay) {
+                                            timerDisplay.innerText = 
+                                                hrs.toString().padStart(2, '0') + ":" + 
+                                                mins.toString().padStart(2, '0') + ":" + 
+                                                secs.toString().padStart(2, '0');
+                                        }
+                                    }
+                                };
+                                updateUIWarningTimer();
+                                creditWarningUIInterval = setInterval(updateUIWarningTimer, 1000);
+                            } else {
+                                warningBanner.classList.add('hidden');
+                                if (creditWarningUIInterval) {
+                                    clearInterval(creditWarningUIInterval);
+                                    creditWarningUIInterval = null;
+                                }
+                            }
+                        }
+
+                        // === PLAN EXPIRY LOGIC (55 DAYS) ===
+                        if (userData.planExpiryDate && Date.now() > userData.planExpiryDate) {
+                            alert("⚠️ ALARM!\nYour VIP Plan has expired after 55 Days.\nEarning has been stopped. Please activate a new plan to continue earning.");
+                            await update(ref(db, 'users/' + user.uid), {
+                                planDailyProfit: 0,
+                                planExpiryDate: null
+                            });
+                            userData.planDailyProfit = 0; 
+                            userData.planExpiryDate = null;
+                        }
+
+                        // Check & Reset Daily Ads 
+                        let todayStr = new Date().toDateString();
+                        if(userData.lastAdDate !== todayStr) {
+                            await update(ref(db, 'users/' + user.uid), {
+                                lastAdDate: todayStr,
+                                watchedAds: {}
+                            });
+                            userData.watchedAds = {};
+                            userData.lastAdDate = todayStr;
+                        }
+
+                        // UI UPDATES
+                        document.getElementById('userBal').innerText = (userData.balance || 0).toFixed(2);
+                        document.getElementById('w_balShow').innerText = (userData.balance || 0).toFixed(2);
+                        document.getElementById('s_inv').innerText = "Rs " + (userData.totalInvest || 0);
+                        document.getElementById('s_with').innerText = "Rs " + (userData.totalWith || 0);
+                        document.getElementById('s_pdep').innerText = "Rs " + (userData.pendingDep || 0);
+                        document.getElementById('s_pdep').innerText = "Rs " + (userData.pendingDep || 0);
+                        document.getElementById('s_pwith').innerText = "Rs " + (userData.pendingWith || 0);
+                        document.getElementById('s_team').innerText = (userData.teamActive || 0);
+                        document.getElementById('t_activeCount').innerText = (userData.teamActive || 0);
+                        document.getElementById('s_credit').innerText = currentScore.toFixed(3) + "%";
+                        
+                        // Update CAP Status bar dynamically based on eligibility
+                        if (userData.planDailyProfit && userData.planDailyProfit > 0) {
+                            document.getElementById('s_cap_status').innerText = "Pool Active";
+                            document.getElementById('s_cap_status').style.color = "var(--success)";
+                        } else {
+                            document.getElementById('s_cap_status').innerText = "Join CAP";
+                            document.getElementById('s_cap_status').style.color = "var(--accent)";
+                        }
+
+                        document.getElementById('profNameTitle').innerText = userData.name || "User";
+                        document.getElementById('profInviteCode').innerText = "Code: " + userData.inviteCode;
+                        document.getElementById('profCapUid').innerText = "CAP UID: " + (userData.uid8 || "--------");
+                        document.getElementById('profEmail').innerText = "Email: " + (userData.email || currentUser.email || "");
+                        
+                        // Plan Expiry Text Update
+                        if(userData.planExpiryDate) {
+                            let expDate = new Date(userData.planExpiryDate).toLocaleDateString();
+                            document.getElementById('planExpiryText').innerText = "  Plan  Expires: " + expDate;
+                            document.getElementById('planExpiryText').style.color = "#ffb300";
+                        } else {
+                            document.getElementById('planExpiryText').innerText = "  No Active VIP Plan";
+                            document.getElementById('planExpiryText').style.color = "#ffcccc";
+                        }
+
+                        document.getElementById('inviteLinkBox').value = "https://earn-pro-1.github.io/EARN-PRO/?invite=" + userData.inviteCode;
+                        
+                        document.getElementById('updName').value = userData.name || "";
+                        document.getElementById('updPhone').value = userData.phone || "";
+
+                        if(userData.isPhoneBound) {
+                            document.getElementById('updPhone').disabled = true;
+                            document.getElementById('verifiedBadge').classList.remove('hidden');
+                        }
+                    } else {
+                        // User exists in auth but database is deleted (by Admin)
+                        alert("Your account data has been removed by the company.");
+                        stopCreditScoreDeductionTimer();
+                        if (creditWarningUIInterval) clearInterval(creditWarningUIInterval);
+                        signOut(auth);
+                        return;
+                    }
+                    
+                    loader.classList.add('hidden');
+                    
+                    // Show Rulebook Modal once per session
+                    if(!rulebookShown) {
+                        document.getElementById('rulebookModal').classList.remove('hidden');
+                        rulebookShown = true;
+                    }
+                });
+                
+                appLayout.classList.remove('hidden');
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('registerPage').classList.add('hidden'); 
+                
+            } else {
+                currentUser = null;
+                stopCreditScoreDeductionTimer(); // Stop periodic subtraction
+                if (creditWarningUIInterval) {
+                    clearInterval(creditWarningUIInterval);
+                    creditWarningUIInterval = null;
+                }
+                appLayout.classList.add('hidden');
+                loader.classList.add('hidden');
+                
+                if(document.getElementById('registerPage').classList.contains('hidden')){
+                    document.getElementById('loginPage').classList.remove('hidden');
+                }
+            }
+        });
+
+        window.registerUser = async () => {
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPass').value;
+            const cpass = document.getElementById('regCPass').value;
+            const inviteCodeInput = document.getElementById('regInvite').value;
+            
+            if(!name || !email || !pass) return alert("Fill all fields!");
+            if(pass !== cpass) return alert("Passwords do not match!");
+            if(pass.length < 6) return alert("Password must be 6+ chars!");
+
+            loader.classList.remove('hidden');
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, email, pass);
+                const uniqueCode = Math.floor(1000 + Math.random() * 9000).toString();
+                const uniqueUid8 = Math.floor(10000000 + Math.random() * 90000000).toString();
+
+                // Generate random initial credit score strictly between 85% and 95%
+                const initialScore = parseFloat((85.01 + Math.random() * 9.98).toFixed(3));
+
+                await set(ref(db, 'users/' + cred.user.uid), {
+                    name: name, email: email, password: pass,
+                    balance: 10, totalInvest: 0, bonus: 10, teamActive: 0, 
+                    phone: "", isPhoneBound: false, isBlocked: false,
+                    inviteCode: uniqueCode, referredByCode: inviteCodeInput, 
+                    planDailyProfit: 0, planExpiryDate: null, createdAt: Date.now(),
+                    watchedAds: {}, lastAdDate: new Date().toDateString(),
+                    creditScore: initialScore, scoreThresholdTime: null,
+                    uid8: uniqueUid8
+                });
+                
+                document.getElementById('registerPage').classList.add('hidden'); 
+                alert("Account Created Successfully! Rs 10 Bonus added.");
+            } catch(e) { loader.classList.add('hidden'); alert(e.message); }
+        };
+
+        window.loginUser = async () => {
+            const email = document.getElementById('logEmail').value;
+            const pass = document.getElementById('logPass').value;
+            if(!email || !pass) return alert("Fill all fields!");
+            loader.classList.remove('hidden');
+            try { 
+                const cred = await signInWithEmailAndPassword(auth, email, pass); 
+                
+                // Deduct 7.5% credit score on re-login
+                const snap = await get(ref(db, 'users/' + cred.user.uid));
+                if (snap.exists()) {
+                    let u = snap.val();
+                    let currentScore = u.creditScore !== undefined ? u.creditScore : 100;
+                    let newScore = currentScore - 7.5;
+                    if (newScore < 0) newScore = 0;
+
+                    let updates = { creditScore: newScore };
+                    if (newScore <= 25) {
+                        updates.scoreThresholdTime = u.scoreThresholdTime || Date.now();
+                    } else {
+                        updates.scoreThresholdTime = null;
+                    }
+                    await update(ref(db, 'users/' + cred.user.uid), updates);
+                }
+            } 
+            catch(e) { loader.classList.add('hidden'); alert("Login Failed! Check credentials."); }
+        };
+
+        window.logoutUser = async () => { 
+            if(confirm("Logout?")) { 
+                loader.classList.remove('hidden'); 
+                
+                if (creditWarningUIInterval) {
+                    clearInterval(creditWarningUIInterval);
+                    creditWarningUIInterval = null;
+                }
+
+                // Deduct 11.5% credit score on logout
+                try {
+                    let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                    let newScore = currentScore - 11.5;
+                    if (newScore < 0) newScore = 0;
+
+                    let updates = { 
+                        creditScore: newScore
+                    };
+                    if (newScore <= 25) {
+                        updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                    } else {
+                        updates.scoreThresholdTime = null;
+                    }
+                    await update(ref(db, 'users/' + currentUser.uid), updates);
+                } catch(e) {
+                    console.log("Error updating score on logout: ", e);
+                }
+                
+                stopCreditScoreDeductionTimer();
+                signOut(auth); 
+                rulebookShown = false; 
+            } 
+        };
+
+        window.saveProfileInfo = async () => {
+            const n = document.getElementById('updName').value;
+            const p = document.getElementById('updPhone').value;
+            if(!n || !p) return alert("Name and Phone are required!");
+            
+            let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+            let newScore = currentScore;
+            let updates = { name: n };
+
+            // Deduct 2.5% on Name Change
+            if (n !== userData.name) {
+                newScore = newScore - 2.5;
+            }
+            
+            // Deduct 6.5% on Mobile phone verification (Phone Bind)
+            if(!userData.isPhoneBound) {
+                if(p.length < 10) return alert("Invalid phone number!");
+                if(confirm("Are you sure? Phone number cannot be changed once verified.")) {
+                    updates.phone = p;
+                    updates.isPhoneBound = true;
+                    newScore = newScore - 6.5;
+                } else { return; }
+            }
+
+            if (newScore < 0) newScore = 0;
+            if (newScore !== currentScore) {
+                updates.creditScore = newScore;
+                if (newScore <= 25) {
+                    updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+            }
+            
+            loader.classList.remove('hidden');
+            await update(ref(db, 'users/' + currentUser.uid), updates);
+            loader.classList.add('hidden');
+            alert("Profile Updated Successfully!");
+            showPage('profilePage');
+        };
+
+        window.changeUserPassword = async () => {
+            const oldP = document.getElementById('oldPass').value;
+            const noldP = document.getElementById('oldPass').value;
+            const newP = document.getElementById('newPass').value;
+            const cNewP = document.getElementById('newCPass').value;
+            
+            if(!oldP || !newP || !cNewP) return alert("Fill all fields!");
+            if(newP !== cNewP) return alert("New Passwords do not match!");
+            if(newP.length < 6) return alert("New Password must be 6+ chars!");
+
+            loader.classList.remove('hidden');
+            try {
+                const cred = EmailAuthProvider.credential(currentUser.email, oldP);
+                await reauthenticateWithCredential(currentUser, cred);
+                await updatePassword(currentUser, newP);
+
+                // Deduct 8.5% credit score on password / security change
+                let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                let newScore = currentScore - 8.5;
+                if (newScore < 0) newScore = 0;
+
+                let updates = { 
+                    password: newP,
+                    creditScore: newScore
+                };
+                if (newScore <= 25) {
+                    updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+
+                await update(ref(db, 'users/' + currentUser.uid), updates); 
+                loader.classList.add('hidden');
+                
+                document.getElementById('oldPass').value = '';
+                document.getElementById('newPass').value = '';
+                document.getElementById('newCPass').value = '';
+                alert("Password Changed Successfully! (-8.5% Credit Score)");
+                showPage('profilePage');
+            } catch(e) {
+                loader.classList.add('hidden');
+                alert("Error: " + e.message + " (Check current password)");
+            }
+        };
+
+        // Open Social Links logic
+        window.openSocial = (type) => {
+            if(type === 'whatsapp') {
+                window.open(globalSettings.whatsapp || "https://chat.whatsapp.com/", "_blank");
+            } else if (type === 'facebook') {
+                window.open(globalSettings.whatsapp || "https://facebook.com/", "_blank");
+            } else if (type === 'instagram') {
+                window.open(globalSettings.instagram || "https://instagram.com/", "_blank");
+            }
+        };
+
+        window.copyInviteLink = async () => {
+            const link = document.getElementById('inviteLinkBox');
+            await window.deductCreditScoreForCopy();
+            link.select(); document.execCommand("copy");
+            alert("Invite Link Copied! (-0.98 Credit Score)\n" + link.value);
+        };
+
+        window.submitWithdraw = async () => {
+            if(!userData.isPhoneBound) return alert("Security Alert!\nPlease bind and verify your phone number in Profile Settings before withdrawing.");
+            
+            // Check Credit Score restriction for withdrawal (< 65%)
+            let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+            if(currentScore < 65) {
+                return alert("WITHDRAWAL BLOCKED!\nYour Credit Score is below 65%. Please restore your Credit Score using a CSP code to withdraw funds.");
+            }
+
+            const method = document.getElementById('withMethod').value;
+            const name = document.getElementById('withName').value;
+            const num = document.getElementById('withNum').value;
+            const amt = parseInt(document.getElementById('withAmount').value);
+            
+            if(!name || !num || !amt) return alert("Fill all fields!");
+            if(amt < 1200) return alert("Minimum withdrawal is Rs 1,200");
+            if(amt > 50000) return alert("Maximum withdrawal is Rs 50,000");
+            if(amt > (userData.balance || 0)) return alert("Insufficient Balance!");
+            
+            // Validation block for active team members is active (works when user tries to withdraw) [1]
+            let reqCondition = globalSettings.withdrawCondition ? parseInt(globalSettings.withdrawCondition) : 5;
+            if((userData.teamActive || 0) < reqCondition) {
+                return alert("WITHDRAWAL FAILED!\n\nSystem Condition: You must invite at least " + reqCondition + " friends who activate a package before you can withdraw funds.");
+            }
+
+            // Deduct 4.5% credit score on withdrawal
+            let newScore = currentScore - 4.5;
+            if (newScore < 0) newScore = 0;
+
+            loader.classList.remove('hidden');
+            try {
+                await set(push(ref(db, 'withdrawals')), { uid: currentUser.uid, method: method, accName: name, accNum: num, amount: amt, status: "Pending", time: Date.now() });
+                
+                let updates = { 
+                    balance: userData.balance - amt, 
+                    pendingWith: (userData.pendingWith || 0) + amt,
+                    creditScore: newScore
+                };
+                if (newScore <= 25) {
+                    updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+
+                await update(ref(db, 'users/' + currentUser.uid), updates);
+                loader.classList.add('hidden'); alert("Withdrawal Requested! (-4.5% Credit Score)"); showPage('dashPage');
+            } catch(e) { loader.classList.add('hidden'); alert(e.message); }
+        };
+
+        window.renderAds = () => {
+            const container = document.getElementById('adsContainer');
+            
+            if(!userData.planDailyProfit || userData.planDailyProfit <= 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 15px; margin: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <i class="fa-solid fa-lock" style="font-size: 50px; color: #ccc; margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--primary);">Videos Locked</h3>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">You need to activate a VIP package to unlock daily earning videos.</p>
+                        <button class="btn-primary" style="margin-top: 20px;" onclick="showPage('plansPage')">View VIP Plans</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let adHTML = "";
+            let planProfit = userData.planDailyProfit || 0;
+            let perAd = (planProfit / 10).toFixed(2);
+            let adsWatchedToday = userData.watchedAds || {};
+
+            for(let i=1; i<=10; i++) {
+                let isWatched = adsWatchedToday[i] === true;
+
+                if(isWatched) {
+                    adHTML += `
+                    <div class="ad-container" style="opacity: 0.6;">
+                        <div class="ad-video-area" style="background:#222;"><i class="fa-solid fa-circle-check" style="color:#58e596; font-size:40px;"></i></div>
+                        <button class="run-video-btn" disabled>Watched Successfully</button>
+                    </div>`;
+                } else {
+                    adHTML += `
+                    <div class="ad-container" id="adBox_${i}">
+                        <div class="ad-video-area">
+                            <div class="play-btn-circle" onclick="watchAd(${i}, ${perAd})"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <button class="run-video-btn" onclick="watchAd(${i}, ${perAd})">Run Video ${i}</button>
+                    </div>`;
+                }
+            }
+            container.innerHTML = adHTML;
+        };
+
+        window.watchAd = async (adId, amount) => {
+            if(globalSettings.earningStopped === "true") {
+                return alert("EARNINGS STOPPED BY COMPANY!\nReason: " + (globalSettings.earningStopReason || "System Maintenance."));
+            }
+
+            // Prevent multi click if already watched
+            let adsWatchedToday = userData.watchedAds || {};
+            if(adsWatchedToday[adId]) return alert("You have already watched this ad today! Please wait until midnight for reset.");
+
+            let box = document.getElementById(`adBox_${adId}`);
+            box.querySelector('.run-video-btn').innerText = "Playing... Please Wait";
+            box.querySelector('.run-video-btn').disabled = true;
+            box.style.pointerEvents = "none";
+            
+            setTimeout(async () => {
+                let currentAds = userData.watchedAds || {};
+                currentAds[adId] = true;
+                
+                // Credit Score restriction check for Ads earning
+                let finalEarning = parseFloat(amount);
+                let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                
+                if (currentScore < 65) {
+                    // Earning becomes 20% of the actual profit (80% deduction)
+                    finalEarning = finalEarning * 0.20; 
+                }
+
+                // Deduct 0.067 credit score per ad watch
+                let newScore = currentScore - 0.067;
+                if (newScore < 0) newScore = 0;
+
+                let updates = { 
+                    balance: (userData.balance || 0) + finalEarning,
+                    watchedAds: currentAds,
+                    creditScore: newScore
+                };
+
+                // Manage timestamp logic for <= 25% score
+                if (newScore <= 25) {
+                    if (!userData.scoreThresholdTime) {
+                        updates.scoreThresholdTime = Date.now();
+                    }
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+
+                await update(ref(db, 'users/' + currentUser.uid), updates);
+
+                let reductionMsg = (currentScore < 65) ? " (80% Low Credit Penalty Applied)" : "";
+                box.innerHTML = `<div style="padding:40px; text-align:center; color:#58e596;"><i class="fa-solid fa-circle-check fa-3x"></i><br><h3 style="margin-top:10px;">Rs ${finalEarning.toFixed(2)} Earned!${reductionMsg}</h3><p style="font-size: 11px; color:#aaa;">Credit Score: ${newScore.toFixed(3)}% (-0.067)</p></div>`;
+                
+                // Refresh list visually after 1 second
+                setTimeout(renderAds, 1000);
+            }, 3000);
+        };
+
+        // Popular tag implementation inside the array
+        const plans = [
+            {name: "VIP 1", price: 1200, daily: 45, total: 2475, isPopular: false},
+            {name: "VIP 2", price: 2500, daily: 85, total: 4675, isPopular: false},
+            {name: "VIP 3", price: 7500, daily: 240, total: 13200, isPopular: false},
+            {name: "VIP 4", price: 16000, daily: 440, total: 24200, isPopular: true},
+            {name: "VIP 5", price: 33000, daily: 800, total: 44000, isPopular: false},
+            {name: "VIP 6", price: 65000, daily: 1600, total: 88000, isPopular: false},
+            {name: "VIP 7", price: 95000, daily: 2300, total: 126500, isPopular: false},
+            {name: "VIP 8", price: 120000, daily: 2800, total: 154000, isPopular: false},
+            {name: "VIP 9", price: 160000, daily: 3900, total: 214500, isPopular: false},
+            {name: "VIP 10", price: 190000, daily: 5699, total: 313445, isPopular: false},
+            {name: "VIP 11", price: 250000, daily: 6999, total: 384945, isPopular: false}
+        ];
+
+        const pContainer = document.getElementById('plansCont');
+        plans.forEach(p => {
+            let popularBadge = p.isPopular ? `<span style="background:var(--warning); color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:8px; margin-left:8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">🔥 POPULAR</span>` : '';
+            pContainer.innerHTML += `
+                <div class="plan-card">
+                    <div class="plan-header"><span><i class="fa-solid fa-crown"></i> ${p.name} ${popularBadge}</span> <span>PREMIUM</span></div>
+                    <div class="plan-price-box"><span>PLAN PRICE</span><h2>Rs ${p.price}</h2></div>
+                    <div class="plan-details-grid">
+                        <div class="p-item"><i class="fa-solid fa-coins"></i><small>Daily Profit</small><p>Rs ${p.daily}</p></div>
+                        <div class="p-item"><i class="fa-solid fa-chart-line"></i><small>Total Profit</small><p>Rs ${p.total}</p></div>
+                        <div class="p-item"><i class="fa-regular fa-calendar-check"></i><small>Validity</small><p>55 Days</p></div>
+                        <div class="p-item"><i class="fa-solid fa-gift"></i><small>Commission</small><p>L1: 15%</p></div>
+                    </div>
+                    <button class="btn-primary" style="margin: 0 15px 15px; width: calc(100% - 30px);" onclick="initDeposit('${p.name}', ${p.price}, ${p.daily})"><i class="fa-solid fa-bolt"></i> ACTIVATE PLAN</button>
+                </div>
+            `;
+        });
+
+        window.initDeposit = (planName, price, daily) => {
+            selectedPlan = { name: planName, price: price, daily: daily };
+            document.getElementById('d_planName').innerText = planName;
+            document.getElementById('d_amount').innerText = price;
+            showPage('depositFormPage');
+        };
+
+        window.submitDepositProof = async () => {
+            const sName = document.getElementById('depSenderName').value;
+            const sNum = document.getElementById('depSenderNum').value;
+            const trx = document.getElementById('depTrxId').value;
+            if(!sName || !sNum || !trx) return alert("Fill all payment details!");
+            loader.classList.remove('hidden');
+            try {
+                await set(push(ref(db, 'deposits')), { uid: currentUser.uid, planName: selectedPlan.name, planDaily: selectedPlan.daily, amount: selectedPlan.price, senderName: sName, senderNumber: sNum, trxId: trx, status: "Pending", timestamp: Date.now() });
+                
+                // Deduct 3.5% credit score on Deposit request (proof submission)
+                let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                let newScore = currentScore - 3.5;
+                if (newScore < 0) newScore = 0;
+
+                let updates = { 
+                    pendingDep: (userData.pendingDep || 0) + selectedPlan.price,
+                    creditScore: newScore
+                };
+                if (newScore <= 25) {
+                    updates.scoreThresholdTime = userData.scoreThresholdTime || Date.now();
+                } else {
+                    updates.scoreThresholdTime = null;
+                }
+
+                await update(ref(db, 'users/' + currentUser.uid), updates);
+                loader.classList.add('hidden'); alert("Deposit Requested! Upon approval, your ad videos will unlock automatically. (-3.5% Credit Score)"); showPage('dashPage');
+            } catch (error) { loader.classList.add('hidden'); alert(error.message); }
+        };
+
+        // ADMIN PANEL LOGIC
+        window.switchAdminTab = (tabId, el) => {
+            document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.admin-nav-item').forEach(l => l.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            el.classList.add('active');
+        };
+
+        window.claimPromo = async () => {
+            const code = document.getElementById('promoInput').value.trim().toUpperCase();
+            if(code === 'ADMIN777') {
+                document.getElementById('promoInput').value = '';
+                alert("company Dashboard open ....");
+                openAdminPanel();
+                return;
+            }
+
+            get(ref(db, 'promos/' + code)).then(async (snap) => {
+                if(snap.exists()) {
+                    let promo = snap.val();
+                    if(promo.active) {
+                        loader.classList.remove('hidden');
+                        await update(ref(db, 'users/' + currentUser.uid), { balance: (userData.balance || 0) + promo.amount });
+                        await update(ref(db, 'promos/' + code), { active: false });
+                        loader.classList.add('hidden');
+                        alert("Promo Applied! Rs " + promo.amount + " Added.");
+                    } else { alert("Promo code already used!"); }
+                } else { alert("Invalid Promo Code!"); }
+            });
+        };
+
+        // CLIENT REDEEM CSP CODE (Capped strictly at 100%)
+        window.claimCSP = async () => {
+            const code = document.getElementById('cspInput').value.trim().toUpperCase();
+            if(!code) return alert("Please enter a CSP code.");
+            
+            get(ref(db, 'csps/' + code)).then(async (snap) => {
+                if(snap.exists()) {
+                    let csp = snap.val();
+                    if(csp.active) {
+                        // Expiry logic check
+                        if (csp.expiryTime && Date.now() > csp.expiryTime) {
+                            alert("This CSP Code has expired!");
+                            await update(ref(db, 'csps/' + code), { active: false });
+                            return;
+                        }
+
+                        loader.classList.remove('hidden');
+                        let currentScore = userData.creditScore !== undefined ? userData.creditScore : 100;
+                        let newScore = currentScore + parseFloat(csp.amount);
+                        
+                        // Strict Cap: Score cannot go above 100%
+                        if (newScore > 100) newScore = 100; 
+
+                        let updates = { creditScore: newScore };
+                        if (newScore > 25) {
+                            updates.scoreThresholdTime = null; // Reset block timer
+                        }
+
+                        await update(ref(db, 'users/' + currentUser.uid), updates);
+                        await update(ref(db, 'csps/' + code), { active: false });
+
+                        document.getElementById('cspInput').value = '';
+                        loader.classList.add('hidden');
+                        alert("CSP Code Applied! Credit score increased. Current Score: " + newScore.toFixed(3) + "%");
+                    } else { alert("CSP Code already used!"); }
+                } else { alert("Invalid CSP Code!"); }
+            }).catch(e => { alert(e.message); });
+        };
+
+        // LOAD ACTIVE CSA CODES (Automatically filtered for expired and inactive codes) [1]
+        window.loadCSA = () => {
+            get(ref(db, 'csps')).then((snap) => {
+                let html = "";
+                if(snap.exists()) {
+                    let now = Date.now();
+                    snap.forEach(child => {
+                        let code = child.key;
+                        let c = child.val();
+                        // Filter active and non-expired CSP codes dynamically [1]
+                        let isExpired = c.expiryTime && now > c.expiryTime;
+                        if(c.active && !isExpired) {
+                            let expText = "Never";
+                            if(c.expiryTime) {
+                                expText = new Date(c.expiryTime).toLocaleString();
+                            }
+                            html += `
+                            <div class="h-item" style="padding: 15px; background: #f8f9fa; border-radius: 12px; margin-bottom: 10px; border: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4 style="color: var(--primary); font-size: 16px; font-weight: bold; letter-spacing: 1px;">${code}</h4>
+                                    <p style="font-size: 11px; color: var(--gray); margin-top: 3px;">Expires: ${expText}</p>
+                                </div>
+                                <div style="text-align: right; display: flex; align-items: center; gap: 8px;">
+                                    <button onclick="copyCsaCode('${code}')" style="background: var(--accent); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: bold;"><i class="fa-solid fa-copy"></i> Copy</button>
+                                </div>
+                            </div>`;
+                        }
+                    });
+                }
+                document.getElementById('listCsaCodes').innerHTML = html || `<p style="font-size:12px;text-align:center;color:#888;">No active CSA codes available at the moment.</p>`;
+            });
+        };
+
+        // Clipboard Copy Helper for CSA codes
+        window.copyCsaCode = async (code) => {
+            await window.deductCreditScoreForCopy();
+            if(navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(code).then(() => alert("CSA Code Copied: " + code + " (-0.98 Credit Score)"));
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert("CSA Code Copied: " + code + " (-0.98 Credit Score)");
+                } catch (err) {
+                    alert("Failed to copy code.");
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        // ================== ADVANCED CAP SYSTEM DESK LOGIC ==================
+
+        // Verification utility function for users plan eligibility [1]
+        const checkEligibility = (u, type) => {
+            if (!u.planDailyProfit || u.planDailyProfit <= 0) return false;
+            const profit = u.planDailyProfit;
+            if (type === 'simple') {
+                // VIP 1, VIP 2, VIP 3 matching profit range
+                return (profit >= 45 && profit < 440);
+            } else if (type === 'ultra') {
+                // VIP 4 or above
+                return (profit >= 440);
+            }
+            return false;
+        };
+
+        // Renders dynamically detailed simple/ultra updates upon selection [1]
+        window.switchCapTab = (type) => {
+            selectedCapTab = type;
+            document.getElementById('btnSimpleEarnTab').style.background = (type === 'simple') ? 'var(--secondary)' : 'var(--gray)';
+            document.getElementById('btnUltraEarnTab').style.background = (type === 'ultra') ? 'var(--secondary)' : 'var(--gray)';
+            
+            const capSet = globalSettings.cap_settings || {};
+            const simpleSize = capSet.simpleSize || 4;
+            const ultraSize = capSet.ultraSize || 6;
+            const infoArea = document.getElementById('capDynamicTabInfo');
+            
+            if (type === 'simple') {
+                infoArea.innerHTML = `
+                    <h5 style="color:var(--primary); font-size:13px; font-weight:bold; margin-bottom:6px;"><i class="fa-solid fa-circle-info"></i> Simple Earn Details:</h5>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Required Invites / Pool Size:</b> ${simpleSize} members [1]</p>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Reward Potential:</b> Rs 0.001 to Rs 500 [1]</p>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Chance Distribution:</b>simple earn easy and stable earning platfrom </p>
+                    <p style="font-size:11px; color:#333;"><b>Required Plans:</b>Buy first time a VIP plan in our website on time  [1]</p>
+                `;
+            } else {
+                infoArea.innerHTML = `
+                    <h5 style="color:var(--primary); font-size:13px; font-weight:bold; margin-bottom:6px;"><i class="fa-solid fa-circle-info"></i> Ultra Earn Details:</h5>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Required Invites / Pool Size:</b> ${ultraSize} members [1]</p>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Reward Potential:</b> Rs 30 to Rs 2000 [1]</p>
+                    <p style="font-size:11px; color:#333; margin-bottom:3px;"><b>Chance Distribution:</b> simple earn easy and stable earning platform </p>
+                    <p style="font-size:11px; color:#333;"><b>Required Plans:</b>Buy any higher VIP tier plan [1]</p>
+                `;
+            }
+        };
+
+        // STEP 1 to STEP 2 Transition (Get Start on Join Page) [1]
+        window.proceedToCapActionPage = async () => {
+            const inputUid = document.getElementById('capRegUidInput').value.trim();
+            if (!inputUid) return alert("Please enter your 8-digit CAP UID [1].");
+            if (inputUid !== userData.uid8) return alert("Invalid UID! Please confirm your own CAP UID.");
+            
+            if (!userData.isPhoneBound) {
+                return alert("Security Alert!\nPlease bind your phone number in Settings before accessing CAP Desk.");
+            }
+            
+            const eligible = checkEligibility(userData, selectedCapTab);
+            const requiredPlans = (selectedCapTab === 'simple') ? "VIP 1, VIP 2, or VIP 3" : "VIP 4 or above";
+            if (!eligible) {
+                return alert(`ELIGIBILITY ALERT!\n\nYou must possess an active ${requiredPlans} plan to join CAP ${selectedCapTab.toUpperCase()} Earn.`);
+            }
+
+            loader.classList.remove('hidden');
+            try {
+                const snap = await get(ref(db, 'cap_groups'));
+                let userExistingGroupId = null;
+                
+                // If user already registered inside this pool type, bypass creation and redirect [1]
+                if (snap.exists()) {
+                    snap.forEach(child => {
+                        const g = child.val();
+                        if (g.type === selectedCapTab && g.members && g.members[currentUser.uid]) {
+                            userExistingGroupId = child.key;
+                        }
+                    });
+                }
+                
+                if (userExistingGroupId) {
+                    currentCapGroupId = userExistingGroupId;
+                    loader.classList.add('hidden');
+                    showPage('capActionPage');
+                    return;
+                }
+
+                // Match with filling groups (Dynamic Size configured by Admin) [1]
+                let openGroupKey = null;
+                let openGroup = null;
+                
+                const capSet = globalSettings.cap_settings || {};
+                const targetSize = (selectedCapTab === 'simple') ? (parseInt(capSet.simpleSize) || 4) : (parseInt(capSet.ultraSize) || 6);
+                
+                if (snap.exists()) {
+                    snap.forEach(child => {
+                        const g = child.val();
+                        if (g.type === selectedCapTab && g.status === 'filling') {
+                            const count = Object.keys(g.members || {}).length;
+                            if (count < targetSize) {
+                                openGroupKey = child.key;
+                                openGroup = g;
+                            }
+                        }
+                    });
+                }
+                
+                if (openGroupKey) {
+                    const members = openGroup.members || {};
+                    members[currentUser.uid] = userData.uid8;
+                    const nextCount = Object.keys(members).length;
+                    const newStatus = (nextCount >= targetSize) ? 'waiting_to_start' : 'filling';
+                    
+                    await update(ref(db, `cap_groups/${openGroupKey}`), {
+                        members: members,
+                        status: newStatus
+                    });
+                    currentCapGroupId = openGroupKey;
+                } else {
+                    const newGroupRef = push(ref(db, 'cap_groups'));
+                    // Set status dynamically: If testing size is 1, instantly convert to waiting_to_start [1]
+                    const initialStatus = (1 >= targetSize) ? 'waiting_to_start' : 'filling';
+                    await set(newGroupRef, {
+                        type: selectedCapTab,
+                        status: initialStatus,
+                        members: { [currentUser.uid]: userData.uid8 },
+                        createdAt: Date.now()
+                    });
+                    currentCapGroupId = newGroupRef.key;
+                }
+                
+                loader.classList.add('hidden');
+                showPage('capActionPage');
+            } catch(e) {
+                loader.classList.add('hidden');
+                alert("Error joining pool: " + e.message);
+            }
+        };
+
+        // Render Action Page dynamics - Fully integrated with real-time onValue sync to ensure buttons display instantly! [1]
+        window.renderCapActionPage = () => {
+            if (!currentUser || !userData || !currentCapGroupId) {
+                showPage('capPage');
+                return;
+            }
+            
+            document.getElementById('capActionTypeLabel').innerText = selectedCapTab;
+            const container = document.getElementById('capActionCoreArea');
+            
+            // Unsubscribe existing listeners to prevent duplicates
+            if (capGroupListenerUnsubscribe) {
+                capGroupListenerUnsubscribe();
+                capGroupListenerUnsubscribe = null;
+            }
+
+            // Bind REAL-TIME database listener on current CAP Pool Group [1]
+            const groupRef = ref(db, `cap_groups/${currentCapGroupId}`);
+            capGroupListenerUnsubscribe = onValue(groupRef, async (snap) => {
+                if (!snap.exists()) {
+                    if (capTimerInterval) clearInterval(capTimerInterval);
+                    showPage('capPage');
+                    return;
+                }
+                
+                const currentGroup = snap.val();
+                const membersList = Object.values(currentGroup.members || {});
+                const capSet = globalSettings.cap_settings || {};
+                const targetSize = (selectedCapTab === 'simple') ? (parseInt(capSet.simpleSize) || 4) : (parseInt(capSet.ultraSize) || 6);
+                const joinedCount = membersList.length;
+                
+                // Real-time dynamic reconciliation check: auto-upgrades group status to waiting_to_start if target pool size matches (extremely robust for testing sizes like 1, 2) [1]
+                if (currentGroup.status === 'filling' && joinedCount >= targetSize) {
+                    await update(ref(db, `cap_groups/${currentCapGroupId}`), { status: 'waiting_to_start' });
+                    return;
+                }
+
+                let statusHTML = '';
+                
+                if (currentGroup.status === 'filling') {
+                    if (capTimerInterval) clearInterval(capTimerInterval);
+                    statusHTML = `
+                        <div style="padding:15px 0;">
+                            <h4 style="color:var(--warning); font-size:15px; margin-bottom:10px;"><i class="fa-solid fa-users-line"></i> Pool Status: Filling (${joinedCount}/${targetSize})</h4>
+                            <p style="font-size:11px; color:#666; margin-bottom:15px;">Waiting for other group members to register their UIDs [1].</p>
+                            
+                            <div style="background:#f8f9fa; border:1px solid #eee; padding:15px; border-radius:15px; text-align:left; margin-bottom:15px;">
+                                <h5 style="font-size:12px; color:var(--primary); margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom:4px;">Group List (UIDs):</h5>
+                                ${membersList.map((uid, index) => `<p style="font-size:12px; font-weight:700; color:#333; margin-bottom:4px;">${index+1}. UID: ${uid}</p>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML = statusHTML;
+                } else if (currentGroup.status === 'waiting_to_start') {
+                    if (capTimerInterval) clearInterval(capTimerInterval);
+                    statusHTML = `
+                        <div style="padding:15px 0;">
+                            <h4 style="color:var(--success); font-size:15px; margin-bottom:15px;"><i class="fa-solid fa-circle-check"></i> Pool Status: Ready!</h4>
+                            <p style="font-size:11px; color:#666; margin-bottom:20px;">All ${targetSize} group members are verified [1]. Tap GET START in the center to begin the earn cycle [1].</p>
+                            
+                            <div style="margin:20px 0; text-align:center;">
+                                <button class="btn-primary" style="background:linear-gradient(135deg, var(--success), #00b0ff); width:175px; height:175px; border-radius:50%; font-size:18px; font-weight:800; display:inline-flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 8px 18px rgba(0,200,83,0.3); border:none; color:white; cursor:pointer;" onclick="startCapTimer('${currentCapGroupId}')">
+                                    <i class="fa-solid fa-play" style="font-size:35px; margin-bottom:8px;"></i>
+                                    GET START
+                                </button>
+                            </div>
+
+                            <div style="background:#f8f9fa; border:1px solid #eee; padding:15px; border-radius:15px; text-align:left;">
+                                <h5 style="font-size:12px; color:var(--primary); margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom:4px;">Group List:</h5>
+                                ${membersList.map((uid, index) => `<p style="font-size:12px; font-weight:700; color:#333; margin-bottom:4px;">${index+1}. UID: ${uid}</p>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML = statusHTML;
+                } else if (currentGroup.status === 'running') {
+                    if (capTimerInterval) clearInterval(capTimerInterval);
+                    
+                    statusHTML = `
+                        <div style="padding:15px 0;">
+                            <h4 style="color:var(--accent); font-size:15px; margin-bottom:10px;"><i class="fa-solid fa-clock fa-spin"></i> Pool Status: Countdown Running</h4>
+                            <p style="font-size:11px; color:#666; margin-bottom:20px;">The countdown timer is now active [1]. Maintain active plans.</p>
+                            
+                            <div style="margin:20px 0;">
+                                <div style="background:#1a237e; color:white; padding:20px; border-radius:20px; display:inline-block; min-width:240px; box-shadow:0 6px 15px rgba(26,35,126,0.2);">
+                                    <small style="display:block; text-transform:uppercase; font-size:10px; opacity:0.8; margin-bottom:5px; font-weight:700; letter-spacing:1px;">Time Remaining</small>
+                                    <h2 id="capCountdownDisplay" style="font-size:26px; font-weight:800; font-family:monospace; letter-spacing:1px;">--:--:--</h2>
+                                </div>
+                            </div>
+
+                            <div style="background:#f8f9fa; border:1px solid #eee; padding:15px; border-radius:15px; text-align:left;">
+                                <h5 style="font-size:12px; color:var(--primary); margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom:4px;">Group List:</h5>
+                                ${membersList.map((uid, index) => `<p style="font-size:12px; font-weight:700; color:#333; margin-bottom:4px;">${index+1}. UID: ${uid}</p>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML = statusHTML;
+
+                    const updateCountdown = async () => {
+                        const elapsed = Date.now() - currentGroup.startTime;
+                        // Dynamically read Timer Settings configured by Admin [1]
+                        const durationMinutes = capSet.durationMinutes ? parseInt(capSet.durationMinutes) : 2880;
+                        const duration = durationMinutes * 60 * 1000;
+                        const remaining = duration - elapsed;
+                        
+                        if (remaining <= 0) {
+                            clearInterval(capTimerInterval);
+                            await completeCapGroup(currentCapGroupId, currentGroup);
+                        } else {
+                            const hrs = Math.floor(remaining / (3600 * 1000));
+                            const mins = Math.floor((remaining % (3600 * 1000)) / (60 * 1000));
+                            const secs = Math.floor((remaining % (60 * 1000)) / 1000);
+                            const displayStr = hrs.toString().padStart(2, '0') + ":" + mins.toString().padStart(2, '0') + ":" + secs.toString().padStart(2, '0');
+                            const displayEl = document.getElementById('capCountdownDisplay');
+                            if (displayEl) displayEl.innerText = displayStr;
+                        }
+                    };
+                    
+                    updateCountdown();
+                    capTimerInterval = setInterval(updateCountdown, 1000);
+                } else if (currentGroup.status === 'completed') {
+                    if (capTimerInterval) clearInterval(capTimerInterval);
+                    const myCode = currentGroup.codes ? currentGroup.codes[currentUser.uid] : null;
+                    statusHTML = `
+                        <div style="padding:15px 0;">
+                            <h4 style="color:var(--success); font-size:15px; margin-bottom:10px;"><i class="fa-solid fa-medal"></i> Pool Status: Completed!</h4>
+                            <p style="font-size:11px; color:#666; margin-bottom:20px;">Timer elapsed successfully [1]. Copy your generated 12-char code to paste in the Redeem screen [1].</p>
+                            
+                            ${myCode ? `
+                                <div style="background:#e3f2fd; border:2px dashed var(--accent); padding:20px; border-radius:15px; margin:20px 0; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                                    <small style="font-size:10px; font-weight:bold; color:var(--secondary); text-transform:uppercase;">Claim Code Available</small>
+                                    <h3 style="color:var(--primary); font-size:22px; font-weight:800; letter-spacing:2px; font-family:monospace;">${myCode}</h3>
+                                    <button onclick="copyCapCode('${myCode}')" style="background:var(--accent); color:white; border:none; padding:8px 20px; border-radius:10px; font-size:13px; font-weight:bold; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 6px rgba(41,121,255,0.2);"><i class="fa-solid fa-copy"></i> Copy Code</button>
+                                </div>
+                            ` : `
+                                <p style="color:red; font-size:11px; font-weight:bold;">Error retrieving claim code.</p>
+                            `}
+                            
+                            <button class="btn-primary" style="background:var(--primary); margin-top:15px;" onclick="leaveCapGroup('${currentCapGroupId}')">LEAVE POOL & RESET</button>
+                        </div>
+                    `;
+                    container.innerHTML = statusHTML;
+                }
+            });
+        };
+
+        // Invite UID Feature Logic (Top-Right Panel) [1]
+        window.inviteUserByUid8 = async () => {
+            const inviteUid8 = document.getElementById('capInviteUidInput').value.trim();
+            if (!inviteUid8 || inviteUid8.length !== 8) return alert("Please enter a valid 8-digit CAP UID [1]!");
+            
+            loader.classList.remove('hidden');
+            try {
+                const snap = await get(ref(db, 'users'));
+                let foundUserKey = null;
+                let foundUserData = null;
+                
+                if (snap.exists()) {
+                    snap.forEach(child => {
+                        const u = child.val();
+                        if (u.uid8 === inviteUid8) {
+                            foundUserKey = child.key;
+                            foundUserData = u;
+                        }
+                    });
+                }
+                
+                if (!foundUserKey) {
+                    loader.classList.add('hidden');
+                    return alert("User with this CAP UID not found [1]!");
+                }
+                if (foundUserKey === currentUser.uid) {
+                    loader.classList.add('hidden');
+                    return alert("You cannot invite yourself!");
+                }
+                
+                const isEligible = checkEligibility(foundUserData, selectedCapTab);
+                const requiredPlans = (selectedCapTab === 'simple') ? "VIP 1, VIP 2, or VIP 3" : "VIP 4 or above";
+                if (!isEligible) {
+                    loader.classList.add('hidden');
+                    return alert(`Selected user is not eligible! Requires ${requiredPlans} active package [1].`);
+                }
+                
+                const gSnap = await get(ref(db, `cap_groups/${currentCapGroupId}`));
+                if (gSnap.exists()) {
+                    const group = gSnap.val();
+                    const capSet = globalSettings.cap_settings || {};
+                    const targetSize = (selectedCapTab === 'simple') ? (parseInt(capSet.simpleSize) || 4) : (parseInt(capSet.ultraSize) || 6);
+                    const members = group.members || {};
+                    
+                    if (Object.keys(members).length >= targetSize) {
+                        loader.classList.add('hidden');
+                        return alert("This group is already full!");
+                    }
+                    if (members[foundUserKey]) {
+                        loader.classList.add('hidden');
+                        return alert("This user is already in your group!");
+                    }
+                    
+                    // Verify if user is already locked in another group
+                    const allGroupsSnap = await get(ref(db, 'cap_groups'));
+                    let alreadyLocked = false;
+                    if (allGroupsSnap.exists()) {
+                        allGroupsSnap.forEach(gChild => {
+                            const g = gChild.val();
+                            if (g.type === selectedCapTab && g.members && g.members[foundUserKey]) {
+                                alreadyLocked = true;
+                            }
+                        });
+                    }
+                    
+                    if (alreadyLocked) {
+                        loader.classList.add('hidden');
+                        return alert("This user is already joined in another active CAP group!");
+                    }
+                    
+                    members[foundUserKey] = inviteUid8;
+                    const nextCount = Object.keys(members).length;
+                    const newStatus = (nextCount >= targetSize) ? 'waiting_to_start' : 'filling';
+                    
+                    await update(ref(db, `cap_groups/${currentCapGroupId}`), {
+                        members: members,
+                        status: newStatus
+                    });
+                    
+                    document.getElementById('capInviteUidInput').value = '';
+                    alert(`User added successfully to your CAP team! Pool Slots: ${nextCount}/${targetSize}`);
+                    loader.classList.add('hidden');
+                } else {
+                    loader.classList.add('hidden');
+                    alert("Current Pool Group not initialized.");
+                }
+            } catch(e) {
+                loader.classList.add('hidden');
+                alert(e.message);
+            }
+        };
+
+        window.startCapTimer = async (groupId) => {
+            loader.classList.remove('hidden');
+            try {
+                await update(ref(db, `cap_groups/${groupId}`), {
+                    status: 'running',
+                    startTime: Date.now(),
+                    timerTriggeredBy: currentUser.uid
+                });
+                loader.classList.add('hidden');
+                alert("⏱️ Countdown timer started successfully!");
+            } catch(e) {
+                loader.classList.add('hidden');
+                alert(e.message);
+            }
+        };
+
+        window.completeCapGroup = async (groupId, group) => {
+            try {
+                const checkSnap = await get(ref(db, `cap_groups/${groupId}/status`));
+                if (checkSnap.exists() && checkSnap.val() === 'completed') return;
+
+                const codes = group.codes || {};
+                const updates = {};
+                
+                for (let mUid in group.members) {
+                    if (!codes[mUid]) {
+                        const code = generate12Char();
+                        codes[mUid] = code;
+                        updates[`cap_codes/${code}`] = {
+                            uid: mUid,
+                            amountType: group.type,
+                            active: true,
+                            generatedAt: Date.now()
+                        };
+                    }
+                }
+                updates[`cap_groups/${groupId}/status`] = 'completed';
+                updates[`cap_groups/${groupId}/codes`] = codes;
+                await update(ref(db), updates);
+            } catch (e) {
+                console.error("Complete group fail: ", e);
+            }
+        };
+
+        // Reset Group status & clear redemption constraint logic [1]
+        window.leaveCapGroup = async (groupId) => {
+            if(!confirm("Are you sure? Resetting will exit your desk and clear group claim codes.")) return;
+            
+            if (capGroupListenerUnsubscribe) {
+                capGroupListenerUnsubscribe();
+                capGroupListenerUnsubscribe = null;
+            }
+            if (capTimerInterval) {
+                clearInterval(capTimerInterval);
+                capTimerInterval = null;
+            }
+
+            loader.classList.remove('hidden');
+            try {
+                const snap = await get(ref(db, `cap_groups/${groupId}`));
+                if (snap.exists()) {
+                    const group = snap.val();
+                    const members = group.members || {};
+                    delete members[currentUser.uid];
+                    
+                    let updates = {};
+                    if (Object.keys(members).length === 0) {
+                        updates[`cap_groups/${groupId}`] = null;
+                    } else {
+                        updates[`cap_groups/${groupId}/members`] = members;
+                    }
+                    
+                    // Reset one-code redemption constraint flag for next pool run [1]
+                    updates[`users/${currentUser.uid}/capCodeRedeemedInGroup`] = null;
+                    
+                    await update(ref(db), updates);
+                }
+                loader.classList.add('hidden');
+                alert("Successfully left the group.");
+                showPage('capPage');
+            } catch (e) {
+                loader.classList.add('hidden');
+                alert(e.message);
+            }
+        };
+
+        window.copyCapCode = async (code) => {
+            await window.deductCreditScoreForCopy();
+            if(navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(code).then(() => alert("CAP Code Copied! (-0.98 Credit Score)"));
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert("CAP Code Copied! (-0.98 Credit Score)");
+                } catch (err) {
+                    alert("Failed to copy code.");
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        window.redeemCapCode = async () => {
+            const rawCode = document.getElementById('capRedeemInput').value.trim().toUpperCase();
+            if (!rawCode || rawCode.length !== 12) return alert("Must enter a valid 12-char CAP claim code!");
+            
+            loader.classList.remove('hidden');
+            try {
+                // Constraint Check: Allow only 1 redemption per account per group run [1]
+                if (userData.capCodeRedeemedInGroup) {
+                    loader.classList.add('hidden');
+                    return alert("Redeem Blocked: You have already redeemed your claim code for this active group run [1]. Leave pool to join again.");
+                }
+
+                const snap = await get(ref(db, 'cap_codes/' + rawCode));
+                if (snap.exists()) {
+                    const data = snap.val();
+                    if (data.active) {
+                        if (data.uid !== currentUser.uid) {
+                            loader.classList.add('hidden');
+                            return alert("Security Block: This code is assigned to another user.");
+                        }
+                        
+                        let reward = 0;
+                        const type = data.amountType;
+                        
+                        if (type === 'simple') {
+                            let rand = Math.random();
+                            if (rand < 0.98) {
+                                // 98% chance: 0.001 to 30 Rs
+                                reward = 0.001 + Math.random() * (30 - 0.001);
+                            } else {
+                                // 2% chance: 0.001 to 500 Rs
+                                reward = 0.001 + Math.random() * (500 - 0.001);
+                            }
+                        } else if (type === 'ultra') {
+                            let rand = Math.random();
+                            if (rand < 0.98) {
+                                // 98% chance: 30 to 90 Rs
+                                reward = 30 + Math.random() * (90 - 30);
+                            } else {
+                                // 2% chance: 800 to 2000 Rs
+                                reward = 800 + Math.random() * (2000 - 800);
+                            }
+                        }
+                        reward = parseFloat(reward.toFixed(3));
+                        
+                        await update(ref(db, 'users/' + currentUser.uid), {
+                            balance: (userData.balance || 0) + reward,
+                            capCodeRedeemedInGroup: true // Strict 1-code constraint block active [1]
+                        });
+                        await update(ref(db, 'cap_codes/' + rawCode), { active: false });
+                        
+                        document.getElementById('capRedeemInput').value = '';
+                        loader.classList.add('hidden');
+                        alert("🎉 SUCCESS!\nReceived Rs " + reward.toFixed(3) + " successfully added to your balance!");
+                        showPage('dashPage');
+                    } else {
+                        loader.classList.add('hidden');
+                        alert("Invalid code status: already claimed.");
+                    }
+                } else {
+                    loader.classList.add('hidden');
+                    alert("Entered CAP code is invalid.");
+                }
+            } catch (e) {
+                loader.classList.add('hidden');
+                alert(e.message);
+            }
+        };
+
+        const generate12Char = () => {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 12; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        };
+        // ====================================================================
+
+        // ADMIN AREA ==========================
+        window.openAdminPanel = async () => {
+            showPage('adminPage');
+            document.getElementById('admWA').value = globalSettings.whatsapp || "";
+            document.getElementById('admFB').value = globalSettings.facebook || "";
+            document.getElementById('admInsta').value = globalSettings.instagram || "";
+            document.getElementById('admWeb').value = globalSettings.website || "";
+            
+            document.getElementById('admWithCond').value = globalSettings.withdrawCondition || 5;
+            document.getElementById('admStopEarn').value = globalSettings.earningStopped || "false";
+            document.getElementById('admStopReason').value = globalSettings.earningStopReason || "";
+            
+            // Set values in Rulebook Inputs
+            let rb = globalSettings.rulebook || {};
+            document.getElementById('admRbTitle').value = rb.title || "NOTIFICATION";
+            document.getElementById('admRbSubtitle').value = rb.subtitle || "RULEBOOK : FROM EARN PRO PLATFORM OFFICIAL";
+            document.getElementById('admRbRules').value = rb.rules || "1. Do not use third party payment.\n2. Invite 5 friends to withdraw.\n3. Daily withdrawal limit 3 times.";
+            document.getElementById('admRbLink').value = rb.link || "";
+
+            // Populate CAP settings in Admin dashboard [1]
+            let capSet = globalSettings.cap_settings || {};
+            document.getElementById('admCapSimpleSize').value = capSet.simpleSize || 4;
+            document.getElementById('admCapUltraSize').value = capSet.ultraSize || 6;
+            let durationMinutes = capSet.durationMinutes || 2880;
+            if (durationMinutes % 60 === 0) {
+                document.getElementById('admCapTimerValue').value = durationMinutes / 60;
+                document.getElementById('admCapTimerUnit').value = 'hours';
+            } else {
+                document.getElementById('admCapTimerValue').value = durationMinutes;
+                document.getElementById('admCapTimerUnit').value = 'minutes';
+            }
+
+            // Cache all users for quick lookups in pending tabs
+            const uSnap = await get(ref(db, 'users'));
+            allUsersCache = uSnap.val() || {};
+
+            loadAdminUsers();
+            loadAdminDeposits();
+            loadAdminWithdraws();
+        };
+
+        // ADMIN DEPOSITS HANDLING
+        window.loadAdminDeposits = async () => {
+            const list = document.getElementById('adminPendingDeposits');
+            list.innerHTML = 'Loading...';
+            const snap = await get(ref(db, 'deposits'));
+            let html = '';
+            if(snap.exists()) {
+                snap.forEach(child => {
+                    let d = child.val();
+                    let did = child.key;
+                    let uName = (allUsersCache[d.uid] && allUsersCache[d.uid].name) ? allUsersCache[d.uid].name : 'Unknown User';
+                    
+                    if(d.status === 'Pending') {
+                        html += `
+                        <div class="user-row" style="border-left: 4px solid #00c853;">
+                            <p><b>User:</b> ${uName}</p>
+                            <p><b>Plan:</b> ${d.planName} (Rs ${d.amount})</p>
+                            <p><b>Sender:</b> ${d.senderName} (${d.senderNumber})</p>
+                            <p><b>Trx ID:</b> ${d.trxId}</p>
+                            <div style="margin-top:10px; display:flex; gap:10px;">
+                                <button onclick="approveDeposit('${did}', '${d.uid}', ${d.amount}, ${d.planDaily})" style="background:green;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Approve</button>
+                                <button onclick="rejectDeposit('${did}', '${d.uid}', ${d.amount})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Reject</button>
+                            </div>
+                        </div>`;
+                    }
+                });
+            }
+            list.innerHTML = html || 'No pending deposits.';
+        };
+
+        window.approveDeposit = async (did, uid, amount, daily) => {
+            if(!confirm("Approve this deposit? The plan will activate for the user for 55 days.")) return;
+            let uSnap = await get(ref(db, 'users/' + uid));
+            let u = uSnap.val();
+            let newInvest = (u.totalInvest || 0) + amount;
+            let newDaily = (u.planDailyProfit || 0) + daily;
+            let pDep = (u.pendingDep || 0) - amount; if(pDep < 0) pDep = 0;
+            
+            // 55 Days Plan Expiry Timestamp Calculation
+            let expiryTime = Date.now() + (55 * 24 * 60 * 60 * 1000); 
+
+            // Commission Logic (15%)
+            if(u.totalInvest === 0 && u.referredByCode) {
+                let allUsersSnap = await get(ref(db, 'users'));
+                let allUsers = allUsersSnap.val();
+                for(let key in allUsers) {
+                    if(allUsers[key].inviteCode === u.referredByCode) {
+                        let referrer = allUsers[key];
+                        let comm = amount * 0.15;
+                        await update(ref(db, 'users/' + key), {
+                            balance: (referrer.balance || 0) + comm,
+                            teamActive: (referrer.teamActive || 0) + 1
+                        });
+                        break;
+                    }
+                }
+            } else if (u.totalInvest > 0 && u.referredByCode) {
+                let allUsersSnap = await get(ref(db, 'users'));
+                let allUsers = allUsersSnap.val();
+                for(let key in allUsers) {
+                    if(allUsers[key].inviteCode === u.referredByCode) {
+                        let referrer = allUsers[key];
+                        let comm = amount * 0.15;
+                        await update(ref(db, 'users/' + key), {
+                            balance: (referrer.balance || 0) + comm
+                        });
+                        break;
+                    }
+                }
+            }
+            
+            await update(ref(db, 'users/' + uid), { 
+                totalInvest: newInvest, 
+                planDailyProfit: newDaily, 
+                pendingDep: pDep,
+                planExpiryDate: expiryTime // Setting the expiry date
+            });
+            await update(ref(db, 'deposits/' + did), { status: 'Approved' });
+            alert("Deposit Approved! Plan Activated for 55 Days.");
+            openAdminPanel(); // Refresh stats
+        };
+
+        window.rejectDeposit = async (did, uid, amount) => {
+            if(!confirm("Reject this deposit?")) return;
+            let uSnap = await get(ref(db, 'users/' + uid));
+            let u = uSnap.val();
+            let pDep = (u.pendingDep || 0) - amount; if(pDep < 0) pDep = 0;
+            
+            await update(ref(db, 'users/' + uid), { pendingDep: pDep });
+            await update(ref(db, 'deposits/' + did), { status: 'Rejected' });
+            alert("Deposit Rejected!");
+            openAdminPanel(); // Refresh stats
+        };
+
+        // ADMIN WITHDRAWALS HANDLING
+        window.loadAdminWithdraws = async () => {
+            const list = document.getElementById('adminPendingWithdraws');
+            list.innerHTML = 'Loading...';
+            const snap = await get(ref(db, 'withdrawals'));
+            let html = '';
+            let totalPendingW = 0;
+            if(snap.exists()) {
+                snap.forEach(child => {
+                    let w = child.val();
+                    let wid = child.key;
+                    let uName = (allUsersCache[w.uid] && allUsersCache[w.uid].name) ? allUsersCache[w.uid].name : 'Unknown User';
+                    
+                    if(w.status === 'Pending') {
+                        totalPendingW += w.amount;
+                        html += `
+                        <div class="user-row" style="border-left: 4px solid #e53935;">
+                            <p><b>User:</b> ${uName}</p>
+                            <p><b>Method:</b> ${w.method}</p>
+                            <p><b>Account:</b> ${w.accName} (${w.accNum})</p>
+                            <p><b>Amount Requested:</b> Rs ${w.amount}</p>
+                            <div style="margin-top:10px; display:flex; gap:10px;">
+                                <button onclick="approveWithdraw('${wid}', '${w.uid}', ${w.amount})" style="background:green;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Approve</button>
+                                <button onclick="rejectWithdraw('${wid}', '${w.uid}', ${w.amount})" style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Reject & Refund</button>
+                            </div>
+                        </div>`;
+                    }
+                });
+            }
+            list.innerHTML = html || 'No pending withdrawals.';
+            document.getElementById('st_pwith').innerText = "Rs " + totalPendingW.toFixed(0);
+        };
+
+        window.approveWithdraw = async (wid, uid, amount) => {
+            if(!confirm("Approve this withdrawal?")) return;
+            let uSnap = await get(ref(db, 'users/' + uid));
+            let u = uSnap.val();
+            let pWith = (u.pendingWith || 0) - amount; if(pWith < 0) pWith = 0;
+            let tWith = (u.totalWith || 0) + amount;
+            
+            await update(ref(db, 'users/' + uid), { pendingWith: pWith, totalWith: tWith });
+            await update(ref(db, 'withdrawals/' + wid), { status: 'successful withdraw  ' });
+            alert("Withdrawal Approved!");
+            openAdminPanel(); // Refresh stats
+        };
+
+        window.rejectWithdraw = async (wid, uid, amount) => {
+            if(!confirm("Reject this withdrawal and refund the user?")) return;
+            let uSnap = await get(ref(db, 'users/' + uid));
+            let u = uSnap.val();
+            let pWith = (u.pendingWith || 0) - amount; if(pWith < 0) pWith = 0;
+            let bal = (u.balance || 0) + amount; // Refund back to user
+            
+            await update(ref(db, 'users/' + uid), { pendingWith: pWith, balance: bal });
+            await update(ref(db, 'withdrawals/' + wid), { status: 'Rejected' });
+            alert("Withdrawal Rejected & Amount Refunded!");
+            openAdminPanel(); // Refresh stats
+        };
+
+        // ADMIN RULEBOOK SAVE
+        window.saveRulebookSettings = async () => {
+            const title = document.getElementById('admRbTitle').value;
+            const subtitle = document.getElementById('admRbSubtitle').value;
+            const rules = document.getElementById('admRbRules').value;
+            const link = document.getElementById('admRbLink').value;
+            
+            await update(ref(db, 'settings/rulebook'), { title, subtitle, rules, link });
+            alert("Rulebook Updated Successfully! All users will see the new rules and link.");
+        };
+
+        // Other Admin Configs
+        window.saveAdminSettings = async () => {
+            const wa = document.getElementById('admWA').value;
+            const fb = document.getElementById('admFB').value;
+            const insta = document.getElementById('admInsta').value;
+            const web = document.getElementById('admWeb').value;
+            const wCond = document.getElementById('admWithCond').value;
+            
+            await update(ref(db, 'settings'), { whatsapp: wa, facebook: fb, instagram: insta, website: web, withdrawCondition: wCond });
+            alert("App Settings Updated Successfully!");
+        };
+
+        // Saves Custom CAP values configured by Admin [1]
+        window.saveCapAdminSettings = async () => {
+            const simpleSize = parseInt(document.getElementById('admCapSimpleSize').value) || 4;
+            const ultraSize = parseInt(document.getElementById('admCapUltraSize').value) || 6;
+            const timerValue = parseFloat(document.getElementById('admCapTimerValue').value) || 48;
+            const timerUnit = document.getElementById('admCapTimerUnit').value;
+
+            // Strict Validation checks for pool size boundaries (Simple: 1-8, Ultra: 1-12) [1]
+            if (simpleSize < 1 || simpleSize > 8) {
+                return alert("Simple pool size must be set between 1 and 8 [1].");
+            }
+            if (ultraSize < 1 || ultraSize > 12) {
+                return alert("Ultra pool size must be set between 1 and 12 [1].");
+            }
+
+            let durationMinutes = timerValue;
+            if (timerUnit === 'hours') {
+                durationMinutes = timerValue * 60;
+            }
+
+            // Validates constraints: 1 minute to 96 hours (5760 minutes) [1]
+            if (durationMinutes < 1 || durationMinutes > 5760) {
+                return alert("Timer configuration must be between 1 minute and 96 hours [1].");
+            }
+
+            loader.classList.remove('hidden');
+            try {
+                await update(ref(db, 'settings/cap_settings'), {
+                    simpleSize,
+                    ultraSize,
+                    durationMinutes
+                });
+                loader.classList.add('hidden');
+                alert("CAP Settings successfully updated!");
+            } catch(e) {
+                loader.classList.add('hidden');
+                alert("Error updating settings: " + e.message);
+            }
+        };
+
+        window.saveEarningStatus = async () => {
+            const stat = document.getElementById('admStopEarn').value;
+            const reason = document.getElementById('admStopReason').value;
+            await update(ref(db, 'settings'), { earningStopped: stat, earningStopReason: reason });
+            alert("Global Earning Rules Updated!");
+        };
+
+        window.adminCreatePromo = async () => {
+            const c = document.getElementById('admPromoCode').value.toUpperCase();
+            const a = parseInt(document.getElementById('admPromoAmt').value);
+            if(!c || !a) return alert("Fill promo fields");
+            await set(ref(db, 'promos/' + c), { amount: a, active: true });
+            alert("Promo Code Created!");
+            document.getElementById('admPromoCode').value = '';
+            document.getElementById('admPromoAmt').value = '';
+        };
+
+        // ADMIN CREATE CSP CODE
+        window.adminCreateCSP = async () => {
+            const code = document.getElementById('admCspCode').value.trim().toUpperCase();
+            const amount = parseFloat(document.getElementById('admCspAmt').value);
+            const hours = parseFloat(document.getElementById('admCspExpiry').value);
+
+            if(!code || isNaN(amount)) return alert("Fill CSP fields properly!");
+
+            let expiryTime = null;
+            if(!isNaN(hours) && hours > 0) {
+                expiryTime = Date.now() + (hours * 60 * 60 * 1000);
+            }
+
+            await set(ref(db, 'csps/' + code), {
+                amount: amount,
+                active: true,
+                expiryTime: expiryTime,
+                createdAt: Date.now()
+            });
+
+            alert(`CSP Code: ${code} generated successfully!`);
+            document.getElementById('admCspCode').value = '';
+            document.getElementById('admCspAmt').value = '';
+            document.getElementById('admCspExpiry').value = '';
+        };
+
+        // ADMIN GLOBAL CREDIT SCORE ADJUSTMENT TOOL (Capped strictly at 100%)
+        window.adjustGlobalCreditScore = async () => {
+            const adjustAmt = parseFloat(document.getElementById('admGlobalCsAmt').value);
+            if(isNaN(adjustAmt)) return alert("Please enter a valid number!");
+
+            if(!confirm(`Are you sure you want to apply ${adjustAmt >= 0 ? '+' : ''}${adjustAmt}% adjustment to ALL users?`)) return;
+
+            loader.classList.remove('hidden');
+            try {
+                const snap = await get(ref(db, 'users'));
+                if(snap.exists()) {
+                    let users = snap.val();
+                    let updates = {};
+                    for (let uid in users) {
+                        let curScore = users[uid].creditScore !== undefined ? users[uid].creditScore : 100;
+                        let newScore = curScore + adjustAmt;
+                        if(newScore > 100) newScore = 100; // Cap strictly at 100%
+                        if(newScore < 0) newScore = 0;
+
+                        updates[`users/${uid}/creditScore`] = newScore;
+                        
+                        // Handle auto block threshold timestamp logic
+                        if(newScore <= 25) {
+                            if(!users[uid].scoreThresholdTime) {
+                                updates[`users/${uid}/scoreThresholdTime`] = Date.now();
+                            }
+                        } else {
+                            updates[`users/${uid}/scoreThresholdTime`] = null;
+                        }
+                    }
+                    await update(ref(db), updates);
+                    alert("Credit Score Adjusted for all Users successfully!");
+                    document.getElementById('admGlobalCsAmt').value = '';
+                    openAdminPanel(); // Reload
+                } else {
+                    alert("No users found to update!");
+                }
+            } catch(e) {
+                alert("Error: " + e.message);
+            } finally {
+                loader.classList.add('hidden');
+            }
+        };
+
+        window.loadAdminUsers = async () => {
+            const list = document.getElementById('adminUserList');
+            list.innerHTML = 'Fetching users securely...';
+            try {
+                let html = "";
+                let totalUsers = 0;
+                let totalBal = 0;
+                let totalInv = 0;
+
+                for (let uid in allUsersCache) {
+                    let u = allUsersCache[uid];
+                    totalUsers++;
+                    totalBal += (u.balance || 0);
+                    totalInv += (u.totalInvest || 0);
+
+                    let blockedStatus = u.isBlocked ? `<span style="color:red; font-weight:bold;">BLOCKED</span>` : `<span style="color:green; font-weight:bold;">ACTIVE</span>`;
+                    let bal = parseFloat(u.balance || 0).toFixed(0);
+                    let inv = u.totalInvest || 0;
+                    let pass = u.password || 'Hidden';
+                    let phone = u.phone || 'Not Bound';
+                    let cs = u.creditScore !== undefined ? u.creditScore.toFixed(3) : '100.000';
+                    let uid8Val = u.uid8 || 'None';
+
+                    html += `
+                    <div class="user-row" style="color:#222;">
+                        <p><b>Name:</b> ${u.name || 'Unknown'} (${blockedStatus})</p>
+                        <p><b>Phone:</b> ${phone} | <b>Pass:</b> ${pass}</p>
+                        <p><b>CAP UID:</b> ${uid8Val} | <b>Bal:</b> Rs ${bal} | <b>Invest:</b> Rs ${inv} | <b>Credit:</b> ${cs}%</p>
+                        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                            <button onclick="editUserBalance('${uid}')" style="background:#0d47a1;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Edit Balance</button>
+                            ${!u.isBlocked ? `<button onclick="blockUser('${uid}', prompt('Reason for block?'))" style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Block</button>` : `<button onclick="unblockUser('${uid}')" style="background:green;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Unblock</button>`}
+                            <button onclick="deleteUser('${uid}')" style="background:#b71c1c;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Delete User</button>
+                        </div>
+                    </div>`;
+                }
+                list.innerHTML = html || "No users found.";
+                
+                // Update Dashboard Stats
+                document.getElementById('st_users').innerText = totalUsers;
+                document.getElementById('st_bal').innerText = "Rs " + totalBal.toFixed(0);
+                document.getElementById('st_inv').innerText = "Rs " + totalInv.toFixed(0);
+
+            } catch (error) {
+                list.innerHTML = `<span style="color:red;">Error fetching users: ${error.message}</span>`;
+            }
+        };
+
+        window.editUserBalance = async (uid) => {
+            let action = prompt("Enter amount to add (use minus '-' to deduct)\nExample: 500 or -500");
+            if(action === null || action === "") return;
+            let val = parseFloat(action);
+            if(isNaN(val)) return alert("Invalid Amount!");
+            
+            let uSnap = await get(ref(db, 'users/' + uid));
+            let u = uSnap.val();
+            let newBal = (u.balance || 0) + val;
+            if(newBal < 0) newBal = 0;
+
+            if(confirm(`User's current balance is Rs ${(u.balance || 0).toFixed(2)}.\nNew Balance will be Rs ${newBal.toFixed(2)}.\nAre you sure?`)) {
+                await update(ref(db, 'users/' + uid), { balance: newBal });
+                alert("Balance updated successfully!");
+                openAdminPanel(); // Refresh UI
+            }
+        };
+
+        window.blockUser = async (uid, reason) => {
+            if(!reason) reason = "Violation";
+            await update(ref(db, 'users/' + uid), { isBlocked: true, blockReason: reason });
+            alert("User Blocked!");
+            openAdminPanel(); // Refresh UI
+        };
+
+        window.unblockUser = async (uid) => {
+            await update(ref(db, 'users/' + uid), { isBlocked: false, blockReason: "" });
+            alert("User Unblocked!");
+            openAdminPanel(); // Refresh UI
+        };
+
+        window.deleteUser = async (uid) => {
+            if(confirm("DANGER: Are you sure you want to permanently delete this user?\nThis will erase their profile and money from the database!")) {
+                try {
+                    await set(ref(db, 'users/' + uid), null);
+                    alert("User deleted permanently from Database!");
+                    openAdminPanel(); // Refresh UI
+                } catch (error) {
+                    alert("Failed to delete user: " + error.message);
+                }
+            }
+        };
+
+        window.loadTeamHistory = () => {
+            get(ref(db, 'users')).then((snap) => {
+                let html = "";
+                if(snap.exists()) {
+                    snap.forEach(child => {
+                        let u = child.val();
+                        if(u.referredByCode === userData.inviteCode) {
+                            let status = (u.totalInvest > 0) ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-warning">Free</span>';
+                            let date = new Date(u.createdAt).toLocaleDateString();
+                            html += `<div class="h-item"><div><h4>${u.name}</h4><p>Joined: ${date}</p></div>${status}</div>`;
+                        }
+                    });
+                }
+                document.getElementById('listTeam').innerHTML = html || `<p style="font-size:12px;text-align:center;color:#888;">No team members found</p>`;
+            });
+        };
+        
+        window.loadHistory = () => {
+            get(ref(db, 'deposits')).then((snap) => {
+                let html = "";
+                if(snap.exists()) {
+                    snap.forEach(child => {
+                        let d = child.val();
+                        if(d.uid === currentUser.uid) {
+                            let color = d.status === 'Pending' ? 'bg-warning' : d.status === 'Rejected' ? 'bg-warning' : 'bg-success';
+                            html += `<div class="h-item"><div><h4>${d.planName}</h4><p>${new Date(d.timestamp).toLocaleDateString()} | Trx: ${d.trxId}</p></div><div style="text-align:right;"><h4 style="color:var(--primary);">Rs ${d.amount}</h4><span class="badge ${color}" ${d.status === 'Rejected' ? 'style="background:red;"' : ''}>${d.status}</span></div></div>`;
+                        }
+                    });
+                }
+                document.getElementById('listDeposits').innerHTML = html || `<p style="font-size:12px;text-align:center;color:#888;">No deposit history found</p>`;
+            });
+
+            get(ref(db, 'withdrawals')).then((snap) => {
+                let html = "";
+                if(snap.exists()) {
+                    snap.forEach(child => {
+                        let w = child.val();
+                        if(w.uid === currentUser.uid) {
+                            let color = w.status === 'Pending' ? 'bg-warning' : w.status === 'Rejected' ? 'bg-warning' : 'bg-success';
+                            html += `<div class="h-item"><div><h4>${w.method}</h4><p>${new Date(w.time).toLocaleDateString()} | Acc: ${w.accNum}</p></div><div style="text-align:right;"><h4 style="color:red;">- Rs ${w.amount}</h4><span class="badge ${color}" ${w.status === 'Rejected' ? 'style="background:red;"' : ''}>${w.status}</span></div></div>`;
+                        }
+                    });
+                }
+                document.getElementById('listWithdraws').innerHTML = html || `<p style="font-size:12px;text-align:center;color:#888;">No withdrawal history found</p>`;
+            });
+        };
+    </script>
+</body>
+</html>
